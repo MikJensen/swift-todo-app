@@ -10,11 +10,11 @@ import UIKit
 
 class User: NSObject, NSCoding {
     let fullname: String
-    let age: NSDate
+    let age: Int
     let username: String
     let token: String
     
-    init(fullname: String, age: NSDate, username: String, token: String){
+    init(fullname: String, age: Int, username: String, token: String){
         self.fullname = fullname
         self.age = age
         self.username = username
@@ -24,7 +24,7 @@ class User: NSObject, NSCoding {
     func getFullname()->String{
         return self.fullname
     }
-    func getAge()->NSDate{
+    func getAge()->Int{
         return self.age
     }
     func getUsername()->String{
@@ -39,7 +39,7 @@ class User: NSObject, NSCoding {
     required convenience init?(coder decoder: NSCoder)
     {
         guard let fullname = decoder.decodeObjectForKey("fullname") as? String,
-            let age = decoder.decodeObjectForKey("age") as? NSDate,
+            let age = decoder.decodeObjectForKey("age") as? Int,
             let username = decoder.decodeObjectForKey("username") as? String,
             let token = decoder.decodeObjectForKey("token") as? String
             else

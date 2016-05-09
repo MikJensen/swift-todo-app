@@ -10,14 +10,10 @@ import UIKit
 
 class ApiModel: NSObject {
     
-    let url:String
-    
-    init(url: String){
-        self.url = url
-    }
+    let url:String = "http://194.239.172.19"
     
     func request(api api: String, method: String, data: String, token: String = "",
-                     callback userFunction: (jsonData: NSDictionary?, statusCodeReturned: Int) -> Void){
+                     completionHandler ch: (jsonData: NSDictionary?, statusCodeReturned: Int) -> Void){
         
         let headers = [
             "authorization": token, // TODO: move this into an if statement.
@@ -40,10 +36,13 @@ class ApiModel: NSObject {
                 print(error)
             } else {
                 let status = (response as! NSHTTPURLResponse).statusCode
-                print(status)
                 
-                if let data = data, jsonString = NSString(data: data, encoding: NSUTF8StringEncoding){
-                    print(jsonString)
+                do{
+                    if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as? NSDictionary {
+                        ch(jsonData: json, statusCodeReturned: status)
+                    }
+                } catch let error as NSError {
+                    print(error.localizedDescription)
                 }
             }
         })
