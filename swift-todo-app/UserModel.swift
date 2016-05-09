@@ -9,5 +9,7 @@
 import UIKit
 
 class UserModel: NSObject {
-
+    
+    func login(username: String, password: String, ch: () -> Void)
+    
 }
