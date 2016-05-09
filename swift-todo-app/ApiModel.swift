@@ -15,11 +15,13 @@ class ApiModel: NSObject {
     func request(api api: String, method: String, data: String, token: String = "",
                      completionHandler ch: (jsonData: NSDictionary?, statusCodeReturned: Int) -> Void){
         
-        let headers = [
-            "authorization": token, // TODO: move this into an if statement.
+        var headers = [
             "cache-control": "no-cache",
             "content-type": "application/x-www-form-urlencoded"
         ]
+        if(token != ""){
+            headers["authorization"] = token
+        }
         
         let postData = NSMutableData(data: data.dataUsingEncoding(NSUTF8StringEncoding)!)
         
@@ -34,6 +36,7 @@ class ApiModel: NSObject {
         let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
                 print(error)
+                ch(jsonData: nil, statusCodeReturned: -1)
             } else {
                 let status = (response as! NSHTTPURLResponse).statusCode
                 
@@ -43,6 +46,7 @@ class ApiModel: NSObject {
                     }
                 } catch let error as NSError {
                     print(error.localizedDescription)
+                    ch(jsonData: nil, statusCodeReturned: -1)
                 }
             }
         })
