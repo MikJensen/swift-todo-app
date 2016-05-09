@@ -9,32 +9,40 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-    // Set user object in keychain
-    // KeychainWrapper.setObject("OBJECT", forKey: "IsLoggedIn")
     
-    // Get user object in keychain
-    // let userObj = KeychainWrapper.objectForKey("IsLoggedIn") as! User
-
+    @IBOutlet weak var usernameField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
+    
+    var userModel = UserModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let um = UserModel()
         um.login("jeggy22", password: "password"){
-            s in
-            if s{
+            if $0{
                 print(um.getUser().fullname)
             }
         }
-        
-        // Do any additional setup after loading the view.
     }
 
+    @IBAction func loginPressed(sender: UIButton) {
+        userModel.login(usernameField.text!, password: passwordField.text!){
+            success in
+            if success{
+                print("Login!")
+            }else{
+                print("Username or password is wrong.")
+            }
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
     // MARK: - Navigation
 

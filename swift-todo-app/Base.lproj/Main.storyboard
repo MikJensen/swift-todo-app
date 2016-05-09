@@ -34,6 +34,7 @@
                                     <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="loginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rlp-Gr-GW6"/>
                                     <segue destination="KEU-K0-Ozx" kind="presentation" identifier="segueLogin" id="IPK-wZ-NR2"/>
                                 </connections>
                             </button>
@@ -51,6 +52,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="passwordField" destination="Hpk-VU-AUB" id="Kmh-Ui-0Gm"/>
+                        <outlet property="usernameField" destination="JPA-yx-cuh" id="aaV-oV-tk8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
