@@ -9,6 +9,11 @@
 import UIKit
 
 class LoginViewController: UIViewController {
+    // Set user object in keychain
+    // KeychainWrapper.setObject("OBJECT", forKey: "IsLoggedIn")
+    
+    // Get user object in keychain
+    // let userObj = KeychainWrapper.objectForKey("IsLoggedIn") as! User
 
     override func viewDidLoad() {
         super.viewDidLoad()

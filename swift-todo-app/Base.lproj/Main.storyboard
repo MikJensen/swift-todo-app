@@ -155,6 +155,9 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Todos" id="tb4-gy-2Pc"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="todoTable" destination="lRR-kA-9ye" id="mWC-iN-1mS"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0tn-YT-CHy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
