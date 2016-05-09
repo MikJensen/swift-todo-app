@@ -21,6 +21,33 @@ class LogoutViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func logoutAction(sender: AnyObject) {
+        self.confirmLogout()
+    }
+    // MARK: - Alert
+    
+    func confirmLogout()
+    {
+        let alert = UIAlertController(title: "Log ud", message: "Er du sikker på du vil logge ud?", preferredStyle: .ActionSheet)
+        
+        let LogoutAction = UIAlertAction(title: "Log ud", style: .Destructive, handler: handleLogout)
+        let CancelAction = UIAlertAction(title: "Annuller", style: .Cancel, handler: cancelLogout)
+        
+        alert.addAction(LogoutAction)
+        alert.addAction(CancelAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    func handleLogout(alertAction: UIAlertAction!) -> Void
+    {
+        
+    }
+    
+    func cancelLogout(alertAction: UIAlertAction!)
+    {
+        
+    }
+    
 
     /*
     // MARK: - Navigation

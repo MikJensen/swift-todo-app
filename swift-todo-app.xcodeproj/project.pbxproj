@@ -19,6 +19,9 @@
 		52AEBF2E1CE08B80001BCE1A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AEBF2D1CE08B80001BCE1A /* SettingsViewController.swift */; };
 		52AEBF301CE08B8E001BCE1A /* LogoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AEBF2F1CE08B8E001BCE1A /* LogoutViewController.swift */; };
 		52AEBF321CE08BA7001BCE1A /* TodoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AEBF311CE08BA7001BCE1A /* TodoTableViewController.swift */; };
+		52AEBF341CE08D71001BCE1A /* ApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AEBF331CE08D71001BCE1A /* ApiModel.swift */; };
+		52AEBF361CE08D7E001BCE1A /* TodoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AEBF351CE08D7E001BCE1A /* TodoModel.swift */; };
+		52AEBF381CE08D90001BCE1A /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AEBF371CE08D90001BCE1A /* UserModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +60,9 @@
 		52AEBF2D1CE08B80001BCE1A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		52AEBF2F1CE08B8E001BCE1A /* LogoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutViewController.swift; sourceTree = "<group>"; };
 		52AEBF311CE08BA7001BCE1A /* TodoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoTableViewController.swift; sourceTree = "<group>"; };
+		52AEBF331CE08D71001BCE1A /* ApiModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiModel.swift; sourceTree = "<group>"; };
+		52AEBF351CE08D7E001BCE1A /* TodoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoModel.swift; sourceTree = "<group>"; };
+		52AEBF371CE08D90001BCE1A /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +146,9 @@
 		52AEBF271CE08ABD001BCE1A /* model */ = {
 			isa = PBXGroup;
 			children = (
+				52AEBF331CE08D71001BCE1A /* ApiModel.swift */,
+				52AEBF351CE08D7E001BCE1A /* TodoModel.swift */,
+				52AEBF371CE08D90001BCE1A /* UserModel.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -287,12 +296,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52AEBF361CE08D7E001BCE1A /* TodoModel.swift in Sources */,
 				52AEBF2C1CE08B67001BCE1A /* CreateNewUserViewController.swift in Sources */,
 				52AEBF2A1CE08B54001BCE1A /* LoginViewController.swift in Sources */,
 				52AEBEFF1CE083A6001BCE1A /* swift_todo_app.xcdatamodeld in Sources */,
 				52AEBF2E1CE08B80001BCE1A /* SettingsViewController.swift in Sources */,
+				52AEBF341CE08D71001BCE1A /* ApiModel.swift in Sources */,
 				52AEBF321CE08BA7001BCE1A /* TodoTableViewController.swift in Sources */,
 				52AEBF301CE08B8E001BCE1A /* LogoutViewController.swift in Sources */,
+				52AEBF381CE08D90001BCE1A /* UserModel.swift in Sources */,
 				52AEBEF71CE083A6001BCE1A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
