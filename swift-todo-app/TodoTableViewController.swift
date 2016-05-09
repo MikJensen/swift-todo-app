@@ -9,6 +9,11 @@
 import UIKit
 
 class TodoTableViewController: UITableViewController {
+    
+    var todoArray = []
+    
+    @IBOutlet var todoTable: UITableView!
+    var deleteTodoIndexPath: NSIndexPath? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +40,40 @@ class TodoTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 0
+    }
+    
+    // MARK: - Alert
+    
+    func confirmDelete(todo: String)
+    {
+        let alert = UIAlertController(title: "Slet todo", message: "Er du sikker på at du vil slette todo \"\(todo)\" permanent?", preferredStyle: .ActionSheet)
+        
+        let DeleteAction = UIAlertAction(title: "Slet", style: .Destructive, handler: handleDeleteTodo)
+        let CancelAction = UIAlertAction(title: "Annuller", style: .Cancel, handler: cancelDeleteTodo)
+        
+        alert.addAction(DeleteAction)
+        alert.addAction(CancelAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    func handleDeleteTodo(alertAction: UIAlertAction!) -> Void
+    {
+//        if let indexPath = deleteTodoIndexPath
+//        {
+//            todoTable.beginUpdates()
+//            
+//            TodoModel().DeleteTodo(self.todoArray[indexPath.row].GetTitle())
+//            {
+//                NSNotificationCenter.defaultCenter().postNotificationName("reload", object: nil)
+//            }
+//            
+//            todoTable.endUpdates()
+//        }
+    }
+    
+    func cancelDeleteTodo(alertAction: UIAlertAction!)
+    {
+        deleteTodoIndexPath = nil
     }
 
     /*
