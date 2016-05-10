@@ -10,24 +10,28 @@ import UIKit
 
 class Todo: NSObject {
     
+    var id: String
     var title: String
-    var parent: Todo?
-    var root: Todo?
     var archived: Bool
     var date: NSDate
-    var children: [Todo]
+    var children: [Todo] = []
     
-    init(title: String, parent: Todo?, root: Todo?, archived: Bool, date: NSDate, children: [Todo]){
+    var parent: Todo?
+    var root: Todo?
+    
+    init(id: String, title: String, archived: Bool, date: NSDate){
+        self.id = id
         self.title = title
-        self.parent = parent
-        self.root = root
         self.archived = archived
         self.date = date
-        self.children = children
     }
     
     func addChild(child: Todo){
         self.children.append(child)
     }
-
+    
+    
+    // TODO: I don't remember how the one liner get/set in swift was.
+   
+    
 }

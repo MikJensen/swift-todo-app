@@ -2,7 +2,7 @@
 //  TodoModel.swift
 //  swift-todo-app
 //
-//  Created by Mik Jensen on 09/05/2016.
+//  Created by Jógvan Olsen on 09/05/2016.
 //  Copyright © 2016 Mik Jensen. All rights reserved.
 //
 
@@ -29,15 +29,38 @@ class TodoModel: NSObject {
             
             let todosJson = json!["todos"]! as! [NSDictionary]
             var todos: [Todo] = []
-            for var todo in todosJson{
-                todos.append(self.buildTodos(nil, parent: todo))
+            for var todo in todosJson{ // <-- Douche xcode bug (This shouldn't be a warning.)
+                todos.append(self.buildTodo(todo, parent: nil))
             }
+            // TODO: Working so far.
+            print("Fancy")
         }
     }
     
-    func buildTodos(node: NSDictionary?, parent: NSDictionary) -> Todo{
+    private func buildTodo(node: NSDictionary, parent: Todo?) -> Todo{
+        let id = node["_id"] as! String
+        let title = node["title"] as! String
+        let archived = node["archived"] as! Bool
+        let date = DateTools.dateFromISO(node["date"] as! String)
         
+        let todo = Todo(id: id, title: title, archived: archived, date: date)
+
+        todo.root = nil
         
+        if let parent = parent{
+            todo.parent = parent
+            if let root = parent.root{
+                todo.root = root
+            } else{
+                todo.root = parent
+            }
+        }
+        
+        for child in node["child"] as! [NSDictionary]{
+            todo.addChild(buildTodo(child, parent: todo))
+        }
+        
+        return todo
     }
     
 }
