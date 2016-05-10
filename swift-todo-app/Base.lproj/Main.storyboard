@@ -180,7 +180,9 @@
                             <outlet property="delegate" destination="Vbf-S2-wfM" id="bXr-FC-5Ct"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Todos" id="tb4-gy-2Pc"/>
+                    <navigationItem key="navigationItem" title="Todos" id="tb4-gy-2Pc">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="JxX-0W-0i7"/>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="todoTable" destination="lRR-kA-9ye" id="mWC-iN-1mS"/>
