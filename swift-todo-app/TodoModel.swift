@@ -32,8 +32,8 @@ class TodoModel: NSObject {
             for var todo in todosJson{ // <-- Douche xcode bug (This shouldn't be a warning.)
                 todos.append(self.buildTodo(todo, parent: nil))
             }
-            // TODO: Working so far.
-            print("Fancy")
+            
+            ch(todos: todos)            
         }
     }
     
