@@ -44,7 +44,7 @@ class UserModel: NSObject {
             json, status in
             if status == 200{
                 if (json!["success"]! as! Bool) == true{
-                    // TODO: Maybe do a autologin here.
+                    // TODO: Maybe do a autologin here?
                     ch(success: true, text: nil)
                 }else{
                     let msg = json!["msg"]! as! String
@@ -74,19 +74,18 @@ class UserModel: NSObject {
                 ch(success: false)
             }
         }
-
     }
     
     func saveKeychain(){
         if let user = user{
             // Set user object in keychain
-            KeychainWrapper.setObject(user, forKey: "isLoggedIn")
+            KeychainWrapper.setObject(user, forKey: "user")
         }
     }
     
     func getUser() -> User{
         // Get user object in keychain
-        return KeychainWrapper.objectForKey("isLoggedIn") as! User
+        return KeychainWrapper.objectForKey("user") as! User
     }
     
 }

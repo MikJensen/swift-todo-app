@@ -33,7 +33,9 @@ class ApiModel: NSObject {
         request.HTTPBody = postData
         
         let session = NSURLSession.sharedSession()
-        let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+        let dataTask = session.dataTaskWithRequest(request){
+            data, response, error in
+
             if (error != nil) {
                 print("Couldn't connect to server: \(error)")
                 ch(jsonData: nil, statusCodeReturned: -1)
@@ -50,7 +52,7 @@ class ApiModel: NSObject {
                     ch(jsonData: nil, statusCodeReturned: -1)
                 }
             }
-        })
+        }
         
         dataTask.resume()
     }

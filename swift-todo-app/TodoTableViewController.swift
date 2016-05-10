@@ -17,7 +17,14 @@ class TodoTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print(1)
+        let tabBar = self.tabBarController as! TabBarViewController
+        tabBar.todoModel.getTodos{
+            todos in
+            print(2)
+        }
+        
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

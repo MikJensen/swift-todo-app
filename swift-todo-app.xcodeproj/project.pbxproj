@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13389E1B1CE208D20010F903 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13389E1A1CE208D20010F903 /* Todo.swift */; };
+		13389E1D1CE20F970010F903 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13389E1C1CE20F970010F903 /* TabBarViewController.swift */; };
 		52AEBEF71CE083A6001BCE1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AEBEF61CE083A6001BCE1A /* AppDelegate.swift */; };
 		52AEBEFC1CE083A6001BCE1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52AEBEFA1CE083A6001BCE1A /* Main.storyboard */; };
 		52AEBEFF1CE083A6001BCE1A /* swift_todo_app.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52AEBEFD1CE083A6001BCE1A /* swift_todo_app.xcdatamodeld */; };
@@ -44,6 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		13389E1A1CE208D20010F903 /* Todo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
+		13389E1C1CE20F970010F903 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		52AEBEF31CE083A5001BCE1A /* swift-todo-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swift-todo-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52AEBEF61CE083A6001BCE1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52AEBEFB1CE083A6001BCE1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -167,6 +171,7 @@
 				52AEBF2D1CE08B80001BCE1A /* SettingsViewController.swift */,
 				52AEBF2F1CE08B8E001BCE1A /* LogoutViewController.swift */,
 				52AEBF311CE08BA7001BCE1A /* TodoTableViewController.swift */,
+				13389E1C1CE20F970010F903 /* TabBarViewController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -183,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				52AEBF421CE0A109001BCE1A /* User.swift */,
+				13389E1A1CE208D20010F903 /* Todo.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -322,6 +328,7 @@
 				52AEBF2C1CE08B67001BCE1A /* CreateNewUserViewController.swift in Sources */,
 				52AEBF2A1CE08B54001BCE1A /* LoginViewController.swift in Sources */,
 				52AEBF3E1CE0A068001BCE1A /* KeychainWrapper.swift in Sources */,
+				13389E1D1CE20F970010F903 /* TabBarViewController.swift in Sources */,
 				52AEBEFF1CE083A6001BCE1A /* swift_todo_app.xcdatamodeld in Sources */,
 				52AEBF2E1CE08B80001BCE1A /* SettingsViewController.swift in Sources */,
 				52AEBF341CE08D71001BCE1A /* ApiModel.swift in Sources */,
@@ -329,6 +336,7 @@
 				52AEBF431CE0A109001BCE1A /* User.swift in Sources */,
 				52AEBF301CE08B8E001BCE1A /* LogoutViewController.swift in Sources */,
 				52AEBF381CE08D90001BCE1A /* UserModel.swift in Sources */,
+				13389E1B1CE208D20010F903 /* Todo.swift in Sources */,
 				52AEBEF71CE083A6001BCE1A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

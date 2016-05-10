@@ -12,27 +12,41 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var errorMessageLabel: UILabel!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     var userModel = UserModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let um = UserModel()
-        um.login("jeggy22", password: "password"){
-            if $0{
-                print(um.getUser().fullname)
-            }
+        errorMessageLabel.hidden = true
+        setLoading(false)
+    }
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        return false
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "segueLogin"{
+            let destinationController = segue.destinationViewController as! TabBarViewController
+            destinationController.userModel = self.userModel
         }
     }
-
+    
     @IBAction func loginPressed(sender: UIButton) {
+        setLoading(true)
         userModel.login(usernameField.text!, password: passwordField.text!){
             success in
-            if success{
-                print("Login!")
-            }else{
-                print("Username or password is wrong.")
+            dispatch_async(dispatch_get_main_queue()){
+                self.setLoading(false)
+                if success{
+                    self.performSegueWithIdentifier("segueLogin", sender: self)
+                }else{
+                    self.errorMessageLabel.hidden = false
+                    self.errorMessageLabel.text = "Username or password is wrong."
+                }
             }
         }
     }
@@ -42,15 +56,16 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func setLoading(loading: Bool){
+        dispatch_async(dispatch_get_main_queue()){
+            if loading{
+                self.errorMessageLabel.hidden = true
+                self.loadingIndicator.hidden = false
+                self.loadingIndicator.startAnimating()
+            }else{
+                self.loadingIndicator.hidden = true
+                self.loadingIndicator.stopAnimating()
+            }
+        }
     }
-    */
-
 }
