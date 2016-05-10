@@ -24,7 +24,11 @@ class UserModel: NSObject {
         self.api.request(api: api, method: method, data: data){
             json, status in
             if status == 200{
-                self.loadUserInfo(json!["token"]! as! String, ch: ch)
+                if json!["success"]! as! Bool{
+                    self.loadUserInfo(json!["token"]! as! String, ch: ch)
+                }else{
+                    ch(success: false)
+                }
             }else{
                 ch(success: false)
             }
