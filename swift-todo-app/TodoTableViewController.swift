@@ -11,6 +11,7 @@ import UIKit
 class TodoTableViewController: UITableViewController {
     
     var todoArray = []
+    var todoSelected: Int?
     
     @IBOutlet var todoTable: UITableView!
     var deleteTodoIndexPath: NSIndexPath? = nil
@@ -28,9 +29,11 @@ class TodoTableViewController: UITableViewController {
 
         let tabBar = self.tabBarController as! TabBarViewController
         
-        tabBar.todoModel.getTodos{
-            todos in
-            self.todos = todos
+        if self.todos.count == 0{
+            tabBar.todoModel.getTodos{
+                todos in
+                self.todos = todos
+            }
         }
         
         
@@ -39,6 +42,17 @@ class TodoTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        return false
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "actionSelectedSegue"{
+            let dest = segue.destinationViewController as! TodoTableViewController
+            dest.todos = todos[self.todoSelected!].children
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -97,11 +111,20 @@ class TodoTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
 
         cell.textLabel?.text = todos[indexPath.row].title
-
+        if todos[indexPath.row].children.count == 0{
+            cell.accessoryType = .None
+        }
+        
         return cell
     }
     
-
+    // TODO: Should be when the accessorytype is selected, instead of rowselect
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print(indexPath.row)
+        self.todoSelected = indexPath.row
+        performSegueWithIdentifier("actionSelectedSegue", sender: self)
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

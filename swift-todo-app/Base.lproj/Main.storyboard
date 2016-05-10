@@ -173,6 +173,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Vbf-S2-wfM" kind="show" identifier="actionSelectedSegue" trigger="accessoryAction" id="8Dn-Op-HLk"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -291,4 +294,7 @@
             <point key="canvasLocation" x="1045" y="-56"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="nGa-3d-Hjn"/>
+    </inferredMetricsTieBreakers>
 </document>
