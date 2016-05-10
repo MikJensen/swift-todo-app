@@ -14,14 +14,23 @@ class TodoTableViewController: UITableViewController {
     
     @IBOutlet var todoTable: UITableView!
     var deleteTodoIndexPath: NSIndexPath? = nil
-
+    
+    var todos: [Todo] = [] {
+        didSet{
+            dispatch_async(dispatch_get_main_queue()){
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(1)
+
         let tabBar = self.tabBarController as! TabBarViewController
+        
         tabBar.todoModel.getTodos{
             todos in
-            print(2)
+            self.todos = todos
         }
         
         
@@ -39,14 +48,14 @@ class TodoTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
+    /*
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
+        return 1
+    }*/
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return self.todos.count
     }
     
     // MARK: - Alert
@@ -83,15 +92,15 @@ class TodoTableViewController: UITableViewController {
         deleteTodoIndexPath = nil
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
 
-        // Configure the cell...
+        cell.textLabel?.text = todos[indexPath.row].title
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
