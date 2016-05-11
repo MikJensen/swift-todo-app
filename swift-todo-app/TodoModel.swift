@@ -72,16 +72,30 @@ class TodoModel: NSObject {
         }
     }
     
-    /*
-     todoModel.removeTodo(todo: selectedTodo){
+    func removeTodo(todo: Todo, hasChildren: () -> Bool, ifAcceptedCh: (success: Bool) -> Void){
+        let delete: () -> Void = {
+            let api = "/api/todo/\(todo.id)"
+            let method = "DELETE"
+            let data = ""
+            let token = self.userModel.user?.token ?? ""
+            
+            self.api.request(api: api, method: method, data: data, token: token){
+                json, status in
+                if status == 200{
+                    ifAcceptedCh(success: true)
+                }else{
+                    ifAcceptedCh(success: false)
+                }
+            }
+        }
         
-     }
-     
-     */
-    func removeTodo(todo: Todo,
-                    completionHandler: (hasChildren: Bool,
-                        innerCompletionHandler: () -> Void) -> Bool){
-    
+        if todo.children.count > 0{
+            if hasChildren(){
+                delete()
+            }
+        } else {
+            delete()
+        }
     }
     
     private func buildTodo(node: NSDictionary, parent: Todo?) -> Todo{

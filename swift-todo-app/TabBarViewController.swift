@@ -15,6 +15,10 @@ class TabBarViewController: UITabBarController {
         https://www.iconfinder.com/icons/984751/cogwheel_configuration_option_options_properties_setting_settings_icon#size=128
         https://www.iconfinder.com/icons/103174/list_menu_icon#size=128
         https://www.iconfinder.com/icons/763291/common_door_exit_logout_out_signout_icon#size=128
+     
+     We probably should use this script for fixing most git conflicts:
+        http://stackoverflow.com/a/36716687/1832471
+     
      */
     
     var userModel: UserModel!

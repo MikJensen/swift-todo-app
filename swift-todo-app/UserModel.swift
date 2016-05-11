@@ -76,12 +76,12 @@ class UserModel: NSObject {
         }
     }
     
-    func saveKeychain(user: User){
+    private func saveKeychain(user: User){
             // Set user object in keychain
             KeychainWrapper.setObject(user, forKey: "user")
     }
     
-    func getUser() -> User{
+    private func getUser() -> User{
         // Get user object in keychain
         return KeychainWrapper.objectForKey("user") as! User
     }
