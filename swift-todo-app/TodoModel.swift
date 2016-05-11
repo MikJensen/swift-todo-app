@@ -45,17 +45,29 @@ class TodoModel: NSObject {
         
         var data = "title=\(title)"
         if let date = date{
-            data = "\(data)&date=\(date)"
+            data = "\(data)&date=\(date.toIsoString())"
         }
         if let root = root{
-            data = "\(data)&root=\(root)"
+            data = "\(data)&root=\(root.id)"
         }
         if let parent = parent{
-            data = "\(data)&parent=\(parent)"
+            data = "\(data)&parent=\(parent.id)"
         }
         
         self.api.request(api: api, method: method, data: data, token: token){
             json, status in
+            
+            if status == 200{
+                let id = json!["_id"] as! String
+                let archived = json!["archived"] as! Bool
+                let date = NSDate(iso8601: json!["date"] as! String)
+                
+                let newTodo = Todo(id: id, title: title, archived: archived, date: date, parent: parent, root: root)
+                ch(todo: newTodo)
+            } else{
+                // Status = 400(Bad Request) and maybe other errors
+                ch(todo: nil)
+            }
             
         }
     }
