@@ -10,6 +10,7 @@ import UIKit
 
 class ApiModel: NSObject {
     
+    // Api Documentation: http://194.239.172.19/ (Also written by us)
     let url:String = "http://194.239.172.19"
     
     func request(api api: String, method: String, data: String, token: String = "",

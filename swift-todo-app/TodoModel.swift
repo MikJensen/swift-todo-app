@@ -75,6 +75,7 @@ class TodoModel: NSObject {
         }
     }
     
+    // Idea for this function: https://gist.github.com/jeggy/26e0b099d5e5bb6ee0eefd0988af13e2
     func removeTodo(todo: Todo, hasChildren: () -> Bool, ifAcceptedCh: (success: Bool) -> Void){
         let delete: () -> Void = {
             let api = "/api/todo/\(todo.id)"
@@ -98,6 +99,17 @@ class TodoModel: NSObject {
             }
         } else {
             delete()
+        }
+    }
+    
+    func updateTodo(todo: Todo, ch: (success: Bool) -> Void){
+        let api = "/api/todo"
+        let method = "PUT"
+        let token = userModel.user?.token ?? ""
+        let data = "id=\(todo.id)&title=\(todo.title)&date=\(todo.date.toIsoString())&archived=\(todo.archived)"
+        
+        self.api.request(api: api, method: method, data: data, token: token){
+            ch(success: $1 == 200 ? true : false) // Using $1 just for show off :P
         }
     }
     
