@@ -67,8 +67,8 @@ class UserModel: NSObject {
                 let fullname = json!["fullname"] as? String ?? ""
                 let age = json!["age"] as? Int ?? -1
                 
-                //self.user = User(fullname: fullname, age: age, username: username, token: token)
-                self.saveKeychain(User(fullname: fullname, age: age, username: username, token: token))
+                self.user = User(fullname: fullname, age: age, username: username, token: token)
+                self.saveKeychain(self.user!)
                 ch(success: true)
             }else{
                 ch(success: false)
@@ -76,14 +76,15 @@ class UserModel: NSObject {
         }
     }
     
-    private func saveKeychain(user: User){
-            // Set user object in keychain
-            KeychainWrapper.setObject(user, forKey: "user")
+    func saveKeychain(user: User){
+        // Set user object in keychain
+        KeychainWrapper.setObject(user, forKey: "user")
     }
     
-    private func getUser() -> User{
+    func getUser() -> User?{
         // Get user object in keychain
-        return KeychainWrapper.objectForKey("user") as! User
+        self.user = KeychainWrapper.objectForKey("user") as? User
+        return self.user
     }
     
 }

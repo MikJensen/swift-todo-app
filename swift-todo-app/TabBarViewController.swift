@@ -28,7 +28,6 @@ class TabBarViewController: UITabBarController {
         super.viewDidLoad()
         
         self.todoModel = TodoModel(userModel: userModel)
-        
     }
 
     override func didReceiveMemoryWarning() {

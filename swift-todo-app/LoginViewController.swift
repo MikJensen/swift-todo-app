@@ -20,7 +20,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if KeychainWrapper.objectForKey("user") != nil{
+        if userModel.getUser() != nil{
             dispatch_async(dispatch_get_main_queue()){
                 self.performSegueWithIdentifier("segueLogin", sender: self)
             }

@@ -21,19 +21,22 @@ class TodoModel: NSObject {
         let api = "/api/todo"
         let method = "GET"
         let data = ""
-        let token = userModel.getUser().token
+        let token = userModel.user?.token ?? ""
         
         self.api.request(api: api, method: method, data: data, token: token){
             json, status in
             
-            
-            let todosJson = json!["todos"]! as! [NSDictionary]
-            var todos: [Todo] = []
-            for var todo in todosJson{ // <-- Annoying xcode bug (This shouldn't be a warning.)
-                todos.append(self.buildTodo(todo, parent: nil))
+            if status == 200{
+                let todosJson = json!["todos"]! as! [NSDictionary]
+                var todos: [Todo] = []
+                for var todo in todosJson{ // <-- Annoying xcode bug (This shouldn't be a warning.)
+                    todos.append(self.buildTodo(todo, parent: nil))
+                }
+                ch(todos: todos)
+            }else{
+                ch(todos: [])
             }
             
-            ch(todos: todos)            
         }
     }
     
@@ -41,7 +44,7 @@ class TodoModel: NSObject {
         
         let api = "/api/todo"
         let method = "POST"
-        let token = userModel.getUser().token
+        let token = userModel.user?.token ?? ""
         
         var data = "title=\(title)"
         if let date = date{
