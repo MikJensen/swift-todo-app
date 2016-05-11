@@ -145,6 +145,7 @@
                                 </state>
                                 <connections>
                                     <action selector="logoutAction:" destination="H5l-bD-Pp1" eventType="touchUpInside" id="uCZ-61-V33"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" identifier="segueLogin" id="Kbu-K5-jKR"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -166,14 +167,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" id="yMU-2S-dQ6">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" id="yMU-2S-dQ6" customClass="TableViewCell" customModule="swift_todo_app" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yMU-2S-dQ6" id="rkh-td-GSk">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pq9-8h-LOZ">
+                                            <rect key="frame" x="51" y="11" width="236" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GLt-BE-QKs">
+                                            <rect key="frame" x="8" y="11" width="21" height="21"/>
+                                        </imageView>
+                                    </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="achievedImage" destination="GLt-BE-QKs" id="oNI-Lh-6sv"/>
+                                    <outlet property="todoLabel" destination="Pq9-8h-LOZ" id="HRi-4k-bNk"/>
                                     <segue destination="Vbf-S2-wfM" kind="show" identifier="actionSelectedSegue" trigger="accessoryAction" id="8Dn-Op-HLk"/>
                                 </connections>
                             </tableViewCell>

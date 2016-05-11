@@ -26,8 +26,7 @@ class LogoutViewController: UIViewController {
     }
     // MARK: - Alert
     
-    func confirmLogout()
-    {
+    func confirmLogout(){
         let alert = UIAlertController(title: "Log ud", message: "Er du sikker på du vil logge ud?", preferredStyle: .ActionSheet)
         
         let LogoutAction = UIAlertAction(title: "Log ud", style: .Destructive, handler: handleLogout)
@@ -38,25 +37,24 @@ class LogoutViewController: UIViewController {
         
         self.presentViewController(alert, animated: true, completion: nil)
     }
-    func handleLogout(alertAction: UIAlertAction!) -> Void
-    {
+    func handleLogout(alertAction: UIAlertAction!) -> Void{
+        KeychainWrapper.removeObjectForKey("user")
+        performSegueWithIdentifier("segueLogin", sender: self)
+    }
+    
+    func cancelLogout(alertAction: UIAlertAction!){
         
     }
     
-    func cancelLogout(alertAction: UIAlertAction!)
-    {
-        
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        return false
     }
-    
-
-    /*
     // MARK: - Navigation
-
+    /*
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
     */
-
 }

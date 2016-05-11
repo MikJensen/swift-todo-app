@@ -20,6 +20,12 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if KeychainWrapper.objectForKey("user") != nil{
+            dispatch_async(dispatch_get_main_queue()){
+                self.performSegueWithIdentifier("segueLogin", sender: self)
+            }
+        }
+        
         errorMessageLabel.hidden = true
         setLoading(false)
     }

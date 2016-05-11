@@ -9,9 +9,9 @@
 import UIKit
 
 class TodoTableViewController: UITableViewController {
-    
     var todoArray = []
     var todoSelected: Int?
+    var achieved = 0
     
     @IBOutlet var todoTable: UITableView!
     var deleteTodoIndexPath: NSIndexPath? = nil
@@ -26,7 +26,7 @@ class TodoTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let tabBar = self.tabBarController as! TabBarViewController
         
         if self.todos.count == 0{
@@ -35,7 +35,6 @@ class TodoTableViewController: UITableViewController {
                 self.todos = todos
             }
         }
-        
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -67,15 +66,13 @@ class TodoTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }*/
-
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.todos.count
     }
     
     // MARK: - Alert
     
-    func confirmDelete(todo: String)
-    {
+    func confirmDelete(todo: String){
         let alert = UIAlertController(title: "Slet todo", message: "Er du sikker på at du vil slette todo \"\(todo)\" permanent?", preferredStyle: .ActionSheet)
         
         let DeleteAction = UIAlertAction(title: "Slet", style: .Destructive, handler: handleDeleteTodo)
@@ -86,8 +83,7 @@ class TodoTableViewController: UITableViewController {
         
         self.presentViewController(alert, animated: true, completion: nil)
     }
-    func handleDeleteTodo(alertAction: UIAlertAction!) -> Void
-    {
+    func handleDeleteTodo(alertAction: UIAlertAction!) -> Void{
 //        if let indexPath = deleteTodoIndexPath
 //        {
 //            todoTable.beginUpdates()
@@ -101,18 +97,23 @@ class TodoTableViewController: UITableViewController {
 //        }
     }
     
-    func cancelDeleteTodo(alertAction: UIAlertAction!)
-    {
+    func cancelDeleteTodo(alertAction: UIAlertAction!){
         deleteTodoIndexPath = nil
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-
-        cell.textLabel?.text = todos[indexPath.row].title
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TableViewCell
+        
+        cell.todoLabel.text = todos[indexPath.row].title
         if todos[indexPath.row].children.count == 0{
             cell.accessoryType = .None
+            
+            if achieved != 0{
+                cell.achievedImage.image = UIImage(named: "checkbox_unchecked")
+            }else{
+                cell.achievedImage.image = UIImage(named: "checkbox_checked")
+            }
         }
         
         return cell
@@ -122,7 +123,17 @@ class TodoTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print(indexPath.row)
         self.todoSelected = indexPath.row
-        performSegueWithIdentifier("actionSelectedSegue", sender: self)
+        if todos[indexPath.row].children.count != 0{
+            performSegueWithIdentifier("actionSelectedSegue", sender: self)
+        }else{
+            if achieved == 0{
+                achieved = 1
+            }else{
+                achieved = 0
+            }
+            self.tableView.reloadData()
+        }
+        
     }
     
     /*
