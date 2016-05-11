@@ -26,6 +26,15 @@ class Todo: NSObject {
         self.date = date
     }
     
+    init(id: String, title: String, archived: Bool, date: NSDate, parent: Todo?, root: Todo?){
+        self.id = id
+        self.title = title
+        self.archived = archived
+        self.date = date
+        self.parent = parent
+        self.root = root
+    }
+    
     func addChild(child: Todo){
         self.children.append(child)
     }
