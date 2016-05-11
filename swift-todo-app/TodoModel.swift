@@ -72,6 +72,18 @@ class TodoModel: NSObject {
         }
     }
     
+    /*
+     todoModel.removeTodo(todo: selectedTodo){
+        
+     }
+     
+     */
+    func removeTodo(todo: Todo,
+                    completionHandler: (hasChildren: Bool,
+                        innerCompletionHandler: () -> Void) -> Bool){
+    
+    }
+    
     private func buildTodo(node: NSDictionary, parent: Todo?) -> Todo{
         let id = node["_id"] as! String
         let title = node["title"] as! String
