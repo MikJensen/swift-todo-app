@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TodoTableViewController: UITableViewController {
+class TodoTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
     var todoArray = []
     var todoSelected: Int?
     var achieved = 0
@@ -51,6 +51,18 @@ class TodoTableViewController: UITableViewController {
         if segue.identifier == "actionSelectedSegue"{
             let dest = segue.destinationViewController as! TodoTableViewController
             dest.todos = todos[self.todoSelected!].children
+        }
+        if segue.identifier == "seguePopover"{
+            let vc = segue.destinationViewController as! UIViewController
+            let editTodo = segue.destinationViewController as? EditPopoverViewController
+            //editTodo?.playerObject = playerObject
+            
+            let controller = vc.popoverPresentationController
+            
+            if controller != nil
+            {
+                controller?.delegate = self
+            }
         }
     }
 
@@ -112,7 +124,7 @@ class TodoTableViewController: UITableViewController {
             if achieved != 0{
                 cell.achievedImage.image = UIImage(named: "checkbox_unchecked")
             }else{
-                cell.achievedImage.image = UIImage(named: "checkbox_checked")
+                cell.achievedImage.image = UIImage(named: "checkbox_checked_green")
             }
         }
         
@@ -126,12 +138,13 @@ class TodoTableViewController: UITableViewController {
         if todos[indexPath.row].children.count != 0{
             performSegueWithIdentifier("actionSelectedSegue", sender: self)
         }else{
-            if achieved == 0{
-                achieved = 1
-            }else{
-                achieved = 0
-            }
-            self.tableView.reloadData()
+            performSegueWithIdentifier("seguePopover", sender: self)
+//            if achieved == 0{
+//                achieved = 1
+//            }else{
+//                achieved = 0
+//            }
+//            self.tableView.reloadData()
         }
         
     }
@@ -171,14 +184,11 @@ class TodoTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle{
+        return .None
     }
-    */
 
 }

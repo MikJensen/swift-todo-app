@@ -144,7 +144,6 @@
                                     <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="logoutAction:" destination="H5l-bD-Pp1" eventType="touchUpInside" id="uCZ-61-V33"/>
                                     <segue destination="BYZ-38-t0r" kind="presentation" identifier="segueLogin" id="Kbu-K5-jKR"/>
                                 </connections>
                             </button>
@@ -188,7 +187,9 @@
                                 <connections>
                                     <outlet property="achievedImage" destination="GLt-BE-QKs" id="oNI-Lh-6sv"/>
                                     <outlet property="todoLabel" destination="Pq9-8h-LOZ" id="HRi-4k-bNk"/>
-                                    <segue destination="Vbf-S2-wfM" kind="show" identifier="actionSelectedSegue" trigger="accessoryAction" id="8Dn-Op-HLk"/>
+                                    <segue destination="6O7-NF-0yT" kind="popoverPresentation" identifier="seguePopover" trigger="accessoryAction" popoverAnchorBarButtonItem="JxX-0W-0i7" id="9ZF-Pr-OMP">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -198,6 +199,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Todos" id="tb4-gy-2Pc">
+                        <barButtonItem key="leftBarButtonItem" id="Uja-RR-SvT"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="JxX-0W-0i7"/>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -208,6 +210,87 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0tn-YT-CHy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1482" y="-56"/>
+        </scene>
+        <!--Edit Popover View Controller-->
+        <scene sceneID="lvq-qE-Q3t">
+            <objects>
+                <viewController modalPresentationStyle="currentContext" id="6O7-NF-0yT" customClass="EditPopoverViewController" customModule="swift_todo_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1DT-hC-NLu"/>
+                        <viewControllerLayoutGuide type="bottom" id="idp-ig-PgA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lTy-QN-7jS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Titel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rdS-Rk-Yft">
+                                <rect key="frame" x="60" y="81" width="200" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="1Vv-o5-GIp"/>
+                                    <constraint firstAttribute="width" constant="200" id="2mX-rZ-e04"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9i-0x-ZCe">
+                                <rect key="frame" x="60" y="119" width="200" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ILO-Sr-4xt"/>
+                                    <constraint firstAttribute="width" constant="200" id="Y2k-8h-hN4"/>
+                                </constraints>
+                                <state key="normal" title="Tilføj">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPV-H7-bky">
+                                <rect key="frame" x="60" y="157" width="200" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="YyU-8x-g0b"/>
+                                    <constraint firstAttribute="width" constant="200" id="t1Y-KS-EcO"/>
+                                </constraints>
+                                <state key="normal" title="Marker som udført">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ygm-uU-8Yl">
+                                <rect key="frame" x="60" y="45" width="200" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="8jR-kz-ZRZ"/>
+                                    <constraint firstAttribute="height" constant="28" id="SVl-VT-1j5"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Rediger"/>
+                                    <segment title="Tilføj ny"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentedAction:" destination="6O7-NF-0yT" eventType="valueChanged" id="f8k-Ec-zLa"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ygm-uU-8Yl" firstAttribute="centerX" secondItem="lTy-QN-7jS" secondAttribute="centerX" id="0b6-EE-BiY"/>
+                            <constraint firstItem="rdS-Rk-Yft" firstAttribute="leading" secondItem="V9i-0x-ZCe" secondAttribute="leading" id="BZq-Ta-dY4"/>
+                            <constraint firstItem="V9i-0x-ZCe" firstAttribute="leading" secondItem="LPV-H7-bky" secondAttribute="leading" id="QF2-75-xP8"/>
+                            <constraint firstItem="V9i-0x-ZCe" firstAttribute="top" secondItem="rdS-Rk-Yft" secondAttribute="bottom" constant="8" symbolic="YES" id="RZJ-MQ-xVx"/>
+                            <constraint firstItem="LPV-H7-bky" firstAttribute="top" secondItem="V9i-0x-ZCe" secondAttribute="bottom" constant="8" symbolic="YES" id="RwP-M5-Mej"/>
+                            <constraint firstItem="Ygm-uU-8Yl" firstAttribute="top" secondItem="1DT-hC-NLu" secondAttribute="bottom" constant="25" id="l3f-Ic-4cN"/>
+                            <constraint firstItem="rdS-Rk-Yft" firstAttribute="top" secondItem="Ygm-uU-8Yl" secondAttribute="bottom" constant="8" symbolic="YES" id="oZJ-QR-PqR"/>
+                            <constraint firstItem="Ygm-uU-8Yl" firstAttribute="leading" secondItem="rdS-Rk-Yft" secondAttribute="leading" id="vXZ-PY-gwd"/>
+                        </constraints>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="240" height="200"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="segmentedControl" destination="Ygm-uU-8Yl" id="PCS-Gs-Oiy"/>
+                        <outlet property="titleField" destination="rdS-Rk-Yft" id="DuE-b7-5ry"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fia-55-Rh7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1840" y="-56"/>
         </scene>
         <!--Instillinger-->
         <scene sceneID="gsl-8a-iOi">
@@ -253,7 +336,9 @@
         <scene sceneID="j1p-PX-itN">
             <objects>
                 <navigationController title="Instillinger" automaticallyAdjustsScrollViewInsets="NO" id="seI-e3-7G0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Instillinger" id="bwM-OH-uGw"/>
+                    <tabBarItem key="tabBarItem" title="Instillinger" image="settings" selectedImage="settings" id="bwM-OH-uGw">
+                        <inset key="imageInsets" minX="26" minY="25" maxX="26" maxY="25"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1yq-Dz-NVo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -272,7 +357,9 @@
         <scene sceneID="jrp-xa-uV8">
             <objects>
                 <navigationController title="Log ud" automaticallyAdjustsScrollViewInsets="NO" id="Dsf-TX-kju" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Log ud" id="a6W-Py-q0a"/>
+                    <tabBarItem key="tabBarItem" title="Log ud" image="logout" id="a6W-Py-q0a">
+                        <inset key="imageInsets" minX="33" minY="25" maxX="23" maxY="26"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="V82-K4-Vjc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -291,7 +378,9 @@
         <scene sceneID="xgR-kF-A37">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jpv-uj-NqT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Todos" id="azT-3p-qAH"/>
+                    <tabBarItem key="tabBarItem" title="Todos" image="list" selectedImage="list" id="azT-3p-qAH">
+                        <inset key="imageInsets" minX="25" minY="25" maxX="25" maxY="25"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="GsM-VY-GdW">
@@ -308,7 +397,9 @@
             <point key="canvasLocation" x="1045" y="-56"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="nGa-3d-Hjn"/>
-    </inferredMetricsTieBreakers>
+    <resources>
+        <image name="list" width="75" height="75"/>
+        <image name="logout" width="75" height="75"/>
+        <image name="settings" width="75" height="75"/>
+    </resources>
 </document>

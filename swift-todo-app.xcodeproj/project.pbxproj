@@ -28,6 +28,7 @@
 		52AEBF3E1CE0A068001BCE1A /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AEBF3D1CE0A068001BCE1A /* KeychainWrapper.swift */; };
 		52AEBF431CE0A109001BCE1A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AEBF421CE0A109001BCE1A /* User.swift */; };
 		52F006991CE35F4900990D95 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F006981CE35F4800990D95 /* TableViewCell.swift */; };
+		52F0069D1CE3B46800990D95 /* EditPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F0069C1CE3B46800990D95 /* EditPopoverViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		52AEBF3D1CE0A068001BCE1A /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		52AEBF421CE0A109001BCE1A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		52F006981CE35F4800990D95 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		52F0069C1CE3B46800990D95 /* EditPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPopoverViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,11 +181,11 @@
 		52AEBF281CE08ACC001BCE1A /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				52F0069E1CE3B58B00990D95 /* todo */,
 				52AEBF291CE08B54001BCE1A /* LoginViewController.swift */,
 				52AEBF2B1CE08B67001BCE1A /* CreateNewUserViewController.swift */,
 				52AEBF2D1CE08B80001BCE1A /* SettingsViewController.swift */,
 				52AEBF2F1CE08B8E001BCE1A /* LogoutViewController.swift */,
-				52AEBF311CE08BA7001BCE1A /* TodoTableViewController.swift */,
 				13389E1C1CE20F970010F903 /* TabBarViewController.swift */,
 			);
 			name = controller;
@@ -193,7 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				52AEBF3D1CE0A068001BCE1A /* KeychainWrapper.swift */,
-				13389E201CE26B400010F903 /* DateTools.swift */,
 				52F006981CE35F4800990D95 /* TableViewCell.swift */,
 			);
 			name = tools;
@@ -206,6 +207,15 @@
 				13389E1A1CE208D20010F903 /* Todo.swift */,
 			);
 			name = entities;
+			sourceTree = "<group>";
+		};
+		52F0069E1CE3B58B00990D95 /* todo */ = {
+			isa = PBXGroup;
+			children = (
+				52F0069C1CE3B46800990D95 /* EditPopoverViewController.swift */,
+				52AEBF311CE08BA7001BCE1A /* TodoTableViewController.swift */,
+			);
+			name = todo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52AEBF361CE08D7E001BCE1A /* TodoModel.swift in Sources */,
+				52F0069D1CE3B46800990D95 /* EditPopoverViewController.swift in Sources */,
 				52F006991CE35F4900990D95 /* TableViewCell.swift in Sources */,
 				52AEBF2C1CE08B67001BCE1A /* CreateNewUserViewController.swift in Sources */,
 				52AEBF2A1CE08B54001BCE1A /* LoginViewController.swift in Sources */,
