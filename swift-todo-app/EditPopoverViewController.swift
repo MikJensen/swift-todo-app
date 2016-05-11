@@ -12,10 +12,18 @@ class EditPopoverViewController: UIViewController {
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var titleField: UITextField!
+   
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var markDoneButton: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         titleField.text = "First selected";
         // Do any additional setup after loading the view.
+        
+        addButton.roundCorners([.TopRight, .TopLeft], radius: 15)
+        markDoneButton.roundCorners([.BottomRight, .BottomLeft], radius: 15)
     }
 
     override func didReceiveMemoryWarning() {

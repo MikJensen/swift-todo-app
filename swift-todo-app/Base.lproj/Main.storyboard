@@ -190,6 +190,7 @@
                                     <segue destination="6O7-NF-0yT" kind="popoverPresentation" identifier="seguePopover" trigger="accessoryAction" popoverAnchorBarButtonItem="JxX-0W-0i7" id="9ZF-Pr-OMP">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                     </segue>
+                                    <segue destination="Vbf-S2-wfM" kind="show" identifier="actionSelectedSegue" id="P01-Xt-6X2"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -284,13 +285,15 @@
                     <value key="contentSizeForViewInPopover" type="size" width="240" height="200"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="addButton" destination="V9i-0x-ZCe" id="RM9-KY-R8y"/>
+                        <outlet property="markDoneButton" destination="LPV-H7-bky" id="EbM-Xl-DRz"/>
                         <outlet property="segmentedControl" destination="Ygm-uU-8Yl" id="PCS-Gs-Oiy"/>
                         <outlet property="titleField" destination="rdS-Rk-Yft" id="DuE-b7-5ry"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fia-55-Rh7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1840" y="-56"/>
+            <point key="canvasLocation" x="1942" y="-56"/>
         </scene>
         <!--Instillinger-->
         <scene sceneID="gsl-8a-iOi">
@@ -402,4 +405,7 @@
         <image name="logout" width="75" height="75"/>
         <image name="settings" width="75" height="75"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="nGa-3d-Hjn"/>
+    </inferredMetricsTieBreakers>
 </document>
