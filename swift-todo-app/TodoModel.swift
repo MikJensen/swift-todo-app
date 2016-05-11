@@ -29,7 +29,7 @@ class TodoModel: NSObject {
             
             let todosJson = json!["todos"]! as! [NSDictionary]
             var todos: [Todo] = []
-            for var todo in todosJson{ // <-- Douche xcode bug (This shouldn't be a warning.)
+            for var todo in todosJson{ // <-- Annoying xcode bug (This shouldn't be a warning.)
                 todos.append(self.buildTodo(todo, parent: nil))
             }
             
@@ -37,11 +37,58 @@ class TodoModel: NSObject {
         }
     }
     
+    func postNewTodo(title: String, date: NSDate? = nil, root: Todo? = nil, parent: Todo? = nil, ch: (todo: Todo?) -> Void){
+        
+        let api = "/api/todo"
+        let method = "POST"
+        let token = userModel.getUser().token
+        
+        var data = "title=\(title)"
+        if let date = date{
+            data = "\(data)&date=\(date.toIsoString())"
+        }
+        if let root = root{
+            data = "\(data)&root=\(root.id)"
+        }
+        if let parent = parent{
+            data = "\(data)&parent=\(parent.id)"
+        }
+        
+        self.api.request(api: api, method: method, data: data, token: token){
+            json, status in
+            
+            if status == 200{
+                let id = json!["_id"] as! String
+                let archived = json!["archived"] as! Bool
+                let date = NSDate(iso8601: json!["date"] as! String)
+                
+                let newTodo = Todo(id: id, title: title, archived: archived, date: date, parent: parent, root: root)
+                ch(todo: newTodo)
+            } else{
+                // Status = 400(Bad Request) and maybe other errors
+                ch(todo: nil)
+            }
+            
+        }
+    }
+    
+    /*
+     todoModel.removeTodo(todo: selectedTodo){
+        
+     }
+     
+     */
+    func removeTodo(todo: Todo,
+                    completionHandler: (hasChildren: Bool,
+                        innerCompletionHandler: () -> Void) -> Bool){
+    
+    }
+    
     private func buildTodo(node: NSDictionary, parent: Todo?) -> Todo{
         let id = node["_id"] as! String
         let title = node["title"] as! String
         let archived = node["archived"] as! Bool
-        let date = DateTools.dateFromISO(node["date"] as! String)
+        let date = NSDate(iso8601: node["date"] as! String)
         
         let todo = Todo(id: id, title: title, archived: archived, date: date)
 
