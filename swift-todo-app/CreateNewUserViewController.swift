@@ -15,12 +15,16 @@ class CreateNewUserViewController: UIViewController {
     @IBOutlet weak var passField: UITextField!
     @IBOutlet weak var repeatPassField: UITextField!
     
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var errorMessage: UILabel!
+    
     let userModel = UserModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        loadingIndicator.hidden = true
+        errorMessage.hidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,24 +33,31 @@ class CreateNewUserViewController: UIViewController {
     }
     
     @IBAction func createUserAction(sender: AnyObject) {
+        errorMessage.hidden = true
         if usernameField.text != "" && fullnameField.text != "" && ageField.text != "" && passField.text != "" && repeatPassField.text != ""{
             if passField.text == repeatPassField.text{
+                loadingIndicator.hidden = false
+                loadingIndicator.startAnimating()
                 userModel.register(usernameField.text!, password: passField.text!, fullname: fullnameField.text!, age: Int(ageField.text!)!){
                     succes, text in
-                    if succes {
-                        print("Registration enden with: \(succes) succes")
-                    }else{
-                        print("user could not be registered")
-                        // user could not be registered
+                    dispatch_async(dispatch_get_main_queue()){
+                        self.loadingIndicator.hidden = true
+                        self.loadingIndicator.stopAnimating()
+                        if succes {
+                            // TODO: Vis den der toast du snakkede om med success besked
+                            self.navigationController?.popViewControllerAnimated(true)
+                        }else{
+                            self.errorMessage.text = "Brugernavn allerede brugt"
+                        }
                     }
                 }
             }else{
-                print("passwords should match")
-                // passwords should match
+                errorMessage.hidden = false
+                errorMessage.text = "passwords should match"
             }
         }else{
-            print("all fields should be filled")
-            // all fields should be filled
+            errorMessage.hidden = false
+            errorMessage.text = "all fields should be filled"
         }
     }
 
