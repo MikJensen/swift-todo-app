@@ -34,6 +34,8 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
                 todos in
                 self.todos = todos
             }
+        } else {
+            self.navigationItem.title = todos[0].parent?.title
         }
         
         // Uncomment the following line to preserve selection between presentations
