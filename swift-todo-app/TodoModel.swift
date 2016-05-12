@@ -121,7 +121,7 @@ class TodoModel: NSObject {
         
         let todo = Todo(id: id, title: title, archived: archived, date: date)
 
-        todo.root = nil
+        //todo.root = nil
         
         if let parent = parent{
             todo.parent = parent
