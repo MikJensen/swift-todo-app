@@ -53,7 +53,7 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
             dest.todos = todos[self.todoSelected!].children
         }
         if segue.identifier == "seguePopover"{
-            let vc = segue.destinationViewController as! UIViewController
+            let vc = segue.destinationViewController
             let editTodo = segue.destinationViewController as? EditPopoverViewController
             //editTodo?.playerObject = playerObject
             

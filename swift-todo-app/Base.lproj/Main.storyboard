@@ -57,6 +57,12 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2f8-Ow-tVx">
                                 <rect key="frame" x="150" y="205" width="20" height="20"/>
                             </activityIndicatorView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4P5-zi-CwF">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Log ind" id="KyN-C4-7tj"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -110,16 +116,32 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OfF-GS-3sq">
-                                <rect key="frame" x="60" y="317" width="200" height="30"/>
+                                <rect key="frame" x="60" y="263" width="200" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Register">
                                     <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="createUserAction:" destination="jcy-K5-HUV" eventType="touchUpInside" id="Nfz-tE-tRF"/>
+                                </connections>
                             </button>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="orf-Ch-gkT">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Opret ny bruger" id="2Ol-PX-vat"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="ageField" destination="nrS-G0-bs3" id="tFi-Kl-YTO"/>
+                        <outlet property="fullnameField" destination="V9H-PS-q4I" id="3EJ-79-tyf"/>
+                        <outlet property="passField" destination="Tr0-f3-mcC" id="XXL-ah-s4Q"/>
+                        <outlet property="repeatPassField" destination="yzC-MB-LSo" id="06L-IZ-Nvp"/>
+                        <outlet property="usernameField" destination="xjZ-Y3-Vtj" id="hqT-ZU-RrX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GtW-cw-9Zh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -232,12 +254,17 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                        <color key="value" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9i-0x-ZCe">
-                                <rect key="frame" x="60" y="119" width="200" height="30"/>
+                                <rect key="frame" x="60" y="119" width="200" height="40"/>
                                 <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="ILO-Sr-4xt"/>
+                                    <constraint firstAttribute="height" constant="40" id="ILO-Sr-4xt"/>
                                     <constraint firstAttribute="width" constant="200" id="Y2k-8h-hN4"/>
                                 </constraints>
                                 <state key="normal" title="Tilføj">
@@ -245,10 +272,10 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPV-H7-bky">
-                                <rect key="frame" x="60" y="157" width="200" height="30"/>
+                                <rect key="frame" x="60" y="159" width="200" height="40"/>
                                 <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="YyU-8x-g0b"/>
+                                    <constraint firstAttribute="height" constant="40" id="YyU-8x-g0b"/>
                                     <constraint firstAttribute="width" constant="200" id="t1Y-KS-EcO"/>
                                 </constraints>
                                 <state key="normal" title="Marker som udført">
@@ -276,13 +303,13 @@
                             <constraint firstItem="rdS-Rk-Yft" firstAttribute="leading" secondItem="V9i-0x-ZCe" secondAttribute="leading" id="BZq-Ta-dY4"/>
                             <constraint firstItem="V9i-0x-ZCe" firstAttribute="leading" secondItem="LPV-H7-bky" secondAttribute="leading" id="QF2-75-xP8"/>
                             <constraint firstItem="V9i-0x-ZCe" firstAttribute="top" secondItem="rdS-Rk-Yft" secondAttribute="bottom" constant="8" symbolic="YES" id="RZJ-MQ-xVx"/>
-                            <constraint firstItem="LPV-H7-bky" firstAttribute="top" secondItem="V9i-0x-ZCe" secondAttribute="bottom" constant="8" symbolic="YES" id="RwP-M5-Mej"/>
+                            <constraint firstItem="LPV-H7-bky" firstAttribute="top" secondItem="V9i-0x-ZCe" secondAttribute="bottom" id="RwP-M5-Mej"/>
                             <constraint firstItem="Ygm-uU-8Yl" firstAttribute="top" secondItem="1DT-hC-NLu" secondAttribute="bottom" constant="25" id="l3f-Ic-4cN"/>
                             <constraint firstItem="rdS-Rk-Yft" firstAttribute="top" secondItem="Ygm-uU-8Yl" secondAttribute="bottom" constant="8" symbolic="YES" id="oZJ-QR-PqR"/>
                             <constraint firstItem="Ygm-uU-8Yl" firstAttribute="leading" secondItem="rdS-Rk-Yft" secondAttribute="leading" id="vXZ-PY-gwd"/>
                         </constraints>
                     </view>
-                    <value key="contentSizeForViewInPopover" type="size" width="240" height="200"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="220" height="200"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="addButton" destination="V9i-0x-ZCe" id="RM9-KY-R8y"/>

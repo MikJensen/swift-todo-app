@@ -16,7 +16,6 @@ class EditPopoverViewController: UIViewController {
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var markDoneButton: UIButton!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         titleField.text = "First selected";
