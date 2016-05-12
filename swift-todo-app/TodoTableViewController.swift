@@ -35,7 +35,7 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
                 self.todos = todos
             }
         } else {
-            self.navigationItem.title = self.todos[0].parent?.title
+            self.navigationItem.title = todos[0].parent?.title
         }
         
         // Uncomment the following line to preserve selection between presentations
@@ -55,7 +55,7 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
             dest.todos = todos[self.todoSelected!].children
         }
         if segue.identifier == "seguePopover"{
-            let vc = segue.destinationViewController as! UIViewController
+            let vc = segue.destinationViewController
             let editTodo = segue.destinationViewController as? EditPopoverViewController
             //editTodo?.playerObject = playerObject
             
