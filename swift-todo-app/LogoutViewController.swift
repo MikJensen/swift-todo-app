@@ -39,7 +39,10 @@ class LogoutViewController: UIViewController {
     }
     func handleLogout(alertAction: UIAlertAction!) -> Void{
         KeychainWrapper.removeObjectForKey("user")
-        performSegueWithIdentifier("segueLogin", sender: self)
+        
+        self.tabBarController?.dismissViewControllerAnimated(true, completion: {})
+        
+        //performSegueWithIdentifier("segueLogin", sender: self)
     }
     
     func cancelLogout(alertAction: UIAlertAction!){
