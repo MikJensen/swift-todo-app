@@ -28,12 +28,14 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
         super.viewDidLoad()
         
         let tabBar = self.tabBarController as! TabBarViewController
-        
+
         if self.todos.count == 0{
             tabBar.todoModel.getTodos{
                 todos in
                 self.todos = todos
             }
+        } else {
+            self.navigationItem.title = self.todos[0].parent?.title
         }
         
         // Uncomment the following line to preserve selection between presentations
