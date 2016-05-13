@@ -99,7 +99,7 @@ class TodoModel: NSObject {
         let data = "id=\(todo.id)&title=\(todo.title)&date=\(todo.date.toIsoString())&archived=\(todo.archived)"
         
         self.api.request(api: api, method: method, data: data, token: token){
-            ch(success: $1 == 200 ? true : false) // Using $1 just for show off :P
+            ch(success: $1 == 200 ? true : false)
         }
     }
     
@@ -122,9 +122,11 @@ class TodoModel: NSObject {
             }
         }
         
+        
         for child in node["child"] as! [NSDictionary]{
             todo.addChild(buildTodo(child, parent: todo))
         }
+ 
         
         return todo
     }
