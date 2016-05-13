@@ -21,12 +21,12 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Brugernavn" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JPA-yx-cuh">
                                 <rect key="frame" x="60" y="72" width="200" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kodeord" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hpk-VU-AUB">
                                 <rect key="frame" x="60" y="133" width="200" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VC9-rG-16R">
                                 <rect key="frame" x="60" y="334" width="200" height="30"/>
@@ -109,17 +109,17 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Brugernavn" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xjZ-Y3-Vtj">
                                 <rect key="frame" x="60" y="73" width="200" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kodeord" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tr0-f3-mcC">
                                 <rect key="frame" x="60" y="187" width="200" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kodeord igen" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yzC-MB-LSo">
                                 <rect key="frame" x="60" y="225" width="200" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Fuldenavn" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V9H-PS-q4I">
                                 <rect key="frame" x="60" y="111" width="200" height="30"/>
@@ -148,7 +148,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="År" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nrS-G0-bs3">
                                 <rect key="frame" x="60" y="149" width="200" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -307,26 +307,23 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9i-0x-ZCe">
-                                <rect key="frame" x="60" y="119" width="200" height="40"/>
+                                <rect key="frame" x="60" y="119" width="200" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="ILO-Sr-4xt"/>
+                                    <constraint firstAttribute="height" constant="30" id="ILO-Sr-4xt"/>
                                     <constraint firstAttribute="width" constant="200" id="Y2k-8h-hN4"/>
                                 </constraints>
                                 <state key="normal" title="Tilføj">
                                     <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPV-H7-bky">
-                                <rect key="frame" x="60" y="159" width="200" height="40"/>
-                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="YyU-8x-g0b"/>
-                                    <constraint firstAttribute="width" constant="200" id="t1Y-KS-EcO"/>
-                                </constraints>
-                                <state key="normal" title="Marker som udført">
-                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Y2k-8h-hN4"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="addButtonAction:" destination="6O7-NF-0yT" eventType="touchUpInside" id="oUG-pE-SV2"/>
+                                </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ygm-uU-8Yl">
                                 <rect key="frame" x="60" y="45" width="200" height="29"/>
@@ -338,22 +335,64 @@
                                     <segment title="Rediger"/>
                                     <segment title="Tilføj ny"/>
                                 </segments>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="8jR-kz-ZRZ"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="segmentedAction:" destination="6O7-NF-0yT" eventType="valueChanged" id="f8k-Ec-zLa"/>
                                 </connections>
                             </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Ikke udført" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a7k-FQ-cKK">
+                                <rect key="frame" x="65" y="164" width="195" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPV-H7-bky">
+                                <rect key="frame" x="150" y="187" width="20" height="20"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="YyU-8x-g0b"/>
+                                    <constraint firstAttribute="width" constant="20" id="t1Y-KS-EcO"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="checkbox_unchecked">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Ygm-uU-8Yl" firstAttribute="centerX" secondItem="lTy-QN-7jS" secondAttribute="centerX" id="0b6-EE-BiY"/>
+                            <constraint firstItem="rdS-Rk-Yft" firstAttribute="trailing" secondItem="V9i-0x-ZCe" secondAttribute="trailing" id="4Zl-dT-HMd"/>
                             <constraint firstItem="rdS-Rk-Yft" firstAttribute="leading" secondItem="V9i-0x-ZCe" secondAttribute="leading" id="BZq-Ta-dY4"/>
-                            <constraint firstItem="V9i-0x-ZCe" firstAttribute="leading" secondItem="LPV-H7-bky" secondAttribute="leading" id="QF2-75-xP8"/>
+                            <constraint firstItem="rdS-Rk-Yft" firstAttribute="trailing" secondItem="Ygm-uU-8Yl" secondAttribute="trailing" id="F0K-3C-bWs"/>
+                            <constraint firstItem="rdS-Rk-Yft" firstAttribute="trailing" secondItem="a7k-FQ-cKK" secondAttribute="trailing" id="HcP-aU-bkd"/>
+                            <constraint firstItem="V9i-0x-ZCe" firstAttribute="leading" secondItem="LPV-H7-bky" secondAttribute="leading" constant="-90" id="QF2-75-xP8"/>
                             <constraint firstItem="V9i-0x-ZCe" firstAttribute="top" secondItem="rdS-Rk-Yft" secondAttribute="bottom" constant="8" symbolic="YES" id="RZJ-MQ-xVx"/>
-                            <constraint firstItem="LPV-H7-bky" firstAttribute="top" secondItem="V9i-0x-ZCe" secondAttribute="bottom" id="RwP-M5-Mej"/>
+                            <constraint firstItem="LPV-H7-bky" firstAttribute="top" secondItem="V9i-0x-ZCe" secondAttribute="bottom" constant="38" id="RwP-M5-Mej"/>
+                            <constraint firstItem="rdS-Rk-Yft" firstAttribute="centerX" secondItem="lTy-QN-7jS" secondAttribute="centerX" id="ST6-iU-QY8"/>
+                            <constraint firstItem="LPV-H7-bky" firstAttribute="top" secondItem="a7k-FQ-cKK" secondAttribute="bottom" constant="3" id="eic-SB-azV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="a7k-FQ-cKK" secondAttribute="trailing" constant="40" id="fex-An-64B"/>
+                            <constraint firstItem="a7k-FQ-cKK" firstAttribute="leading" secondItem="lTy-QN-7jS" secondAttribute="leadingMargin" constant="45" id="iBG-DR-o3l"/>
+                            <constraint firstItem="rdS-Rk-Yft" firstAttribute="leading" secondItem="Ygm-uU-8Yl" secondAttribute="leading" id="jHX-GY-vP7"/>
+                            <constraint firstItem="a7k-FQ-cKK" firstAttribute="top" secondItem="V9i-0x-ZCe" secondAttribute="bottom" constant="15" id="kqS-aX-BGf"/>
                             <constraint firstItem="Ygm-uU-8Yl" firstAttribute="top" secondItem="1DT-hC-NLu" secondAttribute="bottom" constant="25" id="l3f-Ic-4cN"/>
                             <constraint firstItem="rdS-Rk-Yft" firstAttribute="top" secondItem="Ygm-uU-8Yl" secondAttribute="bottom" constant="8" symbolic="YES" id="oZJ-QR-PqR"/>
+                            <constraint firstItem="rdS-Rk-Yft" firstAttribute="leading" secondItem="V9i-0x-ZCe" secondAttribute="leading" id="pq5-aB-rYN"/>
                             <constraint firstItem="Ygm-uU-8Yl" firstAttribute="leading" secondItem="rdS-Rk-Yft" secondAttribute="leading" id="vXZ-PY-gwd"/>
+                            <constraint firstItem="a7k-FQ-cKK" firstAttribute="trailing" secondItem="V9i-0x-ZCe" secondAttribute="trailing" id="y4F-2d-SgS"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="0b6-EE-BiY"/>
+                                <exclude reference="vXZ-PY-gwd"/>
+                                <exclude reference="BZq-Ta-dY4"/>
+                                <exclude reference="fex-An-64B"/>
+                                <exclude reference="y4F-2d-SgS"/>
+                            </mask>
+                        </variation>
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="220" height="200"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -493,6 +532,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="checkbox_unchecked" width="48" height="48"/>
         <image name="list" width="75" height="75"/>
         <image name="logout" width="75" height="75"/>
         <image name="settings" width="75" height="75"/>

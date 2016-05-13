@@ -63,9 +63,9 @@ class TodoModel: NSObject {
             if status == 200{
                 let id = json!["_id"] as! String
                 let archived = json!["archived"] as! Bool
-                let date = NSDate(iso8601: json!["date"] as! String)
+                // let date = NSDate(iso8601: json!["date"] as! String) // Bug in server
                 
-                let newTodo = Todo(id: id, title: title, archived: archived, date: date, parent: parent, root: root)
+                let newTodo = Todo(id: id, title: title, archived: archived, date: date ?? NSDate(), parent: parent, root: root)
                 ch(todo: newTodo)
             } else{
                 // Status = 400(Bad Request) and maybe other errors
@@ -76,29 +76,19 @@ class TodoModel: NSObject {
     }
     
     // Idea for this function: https://gist.github.com/jeggy/26e0b099d5e5bb6ee0eefd0988af13e2
-    func removeTodo(todo: Todo, hasChildren: () -> Bool, ifAcceptedCh: (success: Bool) -> Void){
-        let delete: () -> Void = {
-            let api = "/api/todo/\(todo.id)"
-            let method = "DELETE"
-            let data = ""
-            let token = self.userModel.user?.token ?? ""
-            
-            self.api.request(api: api, method: method, data: data, token: token){
-                json, status in
-                if status == 200{
-                    ifAcceptedCh(success: true)
-                }else{
-                    ifAcceptedCh(success: false)
-                }
-            }
-        }
+    func removeTodo(todo: Todo, Ch: (success: Bool) -> Void){
+        let api = "/api/todo/\(todo.id)"
+        let method = "DELETE"
+        let data = ""
+        let token = self.userModel.user?.token ?? ""
         
-        if todo.children.count > 0{
-            if hasChildren(){
-                delete()
+        self.api.request(api: api, method: method, data: data, token: token){
+            json, status in
+            if status == 200{
+                Ch(success: true)
+            }else{
+                Ch(success: false)
             }
-        } else {
-            delete()
         }
     }
     

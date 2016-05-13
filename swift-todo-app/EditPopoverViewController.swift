@@ -16,27 +16,48 @@ class EditPopoverViewController: UIViewController {
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var markDoneButton: UIButton!
     
+    var todoObj:Todo!
+    
+    var todoModel:TodoModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleField.text = "First selected";
-        // Do any additional setup after loading the view.
+        titleField.text = "\(todoObj.title)";
         
-        addButton.roundCorners([.TopRight, .TopLeft], radius: 15)
-        markDoneButton.roundCorners([.BottomRight, .BottomLeft], radius: 15)
+        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    @IBAction func segmentedAction(sender: UISegmentedControl) {
+    @IBAction func segmentedAction(sender: AnyObject) {
         switch segmentedControl.selectedSegmentIndex{
         case 0:
-            titleField.text = "First selected";
+            addButton.setTitle("Rediger", forState: .Normal)
+            titleField.text = "\(todoObj.title)";
         case 1:
-            titleField.text = "Second Segment selected";
+            addButton.setTitle("Tilføj ny", forState: .Normal)
+            titleField.text = ""
         default:
             break; 
+        }
+    }
+    @IBAction func addButtonAction(sender: UIButton) {
+        if addButton.titleLabel == "Rediger"{
+            
+        }else{
+            todoModel.postNewTodo(titleField.text!, date: NSDate(), root: todoObj.root ?? todoObj, parent: todoObj){
+                todo in
+                if let todo = todo{
+                    JLToast.makeText("Todo blev gemt", duration: JLToastDelay.ShortDelay).show()
+                    self.presentingViewController?.dismissViewControllerAnimated(true, completion: {})
+                    self.todoObj.addChild(todo)
+                     NSNotificationCenter.defaultCenter().postNotificationName("reload", object: nil)
+                }else{
+                    JLToast.makeText("Todo blev ikke gemt, prøv igen!", duration: JLToastDelay.ShortDelay).show()
+                }
+            }
         }
     }
 

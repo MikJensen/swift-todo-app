@@ -44,7 +44,7 @@ class CreateNewUserViewController: UIViewController {
                         self.loadingIndicator.hidden = true
                         self.loadingIndicator.stopAnimating()
                         if succes {
-                            // TODO: Vis den der toast du snakkede om med success besked
+                            JLToast.makeText("Bruger er oprettet", duration: JLToastDelay.ShortDelay).show()
                             self.navigationController?.popViewControllerAnimated(true)
                         }else{
                             self.errorMessage.text = "Brugernavn allerede brugt"

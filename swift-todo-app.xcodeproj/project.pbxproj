@@ -30,6 +30,10 @@
 		52AEBF431CE0A109001BCE1A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AEBF421CE0A109001BCE1A /* User.swift */; };
 		52F006991CE35F4900990D95 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F006981CE35F4800990D95 /* TableViewCell.swift */; };
 		52F0069D1CE3B46800990D95 /* EditPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F0069C1CE3B46800990D95 /* EditPopoverViewController.swift */; };
+		52F006A51CE5CBBB00990D95 /* JLToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F006A11CE5CBBB00990D95 /* JLToast.swift */; };
+		52F006A61CE5CBBB00990D95 /* JLToastCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F006A21CE5CBBB00990D95 /* JLToastCenter.swift */; };
+		52F006A71CE5CBBB00990D95 /* JLToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F006A31CE5CBBB00990D95 /* JLToastView.swift */; };
+		52F006A81CE5CBBB00990D95 /* JLToastWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F006A41CE5CBBB00990D95 /* JLToastWindow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +83,11 @@
 		52AEBF421CE0A109001BCE1A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		52F006981CE35F4800990D95 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		52F0069C1CE3B46800990D95 /* EditPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPopoverViewController.swift; sourceTree = "<group>"; };
+		52F006A01CE5CBBB00990D95 /* JLToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLToast.h; sourceTree = "<group>"; };
+		52F006A11CE5CBBB00990D95 /* JLToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JLToast.swift; sourceTree = "<group>"; };
+		52F006A21CE5CBBB00990D95 /* JLToastCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JLToastCenter.swift; sourceTree = "<group>"; };
+		52F006A31CE5CBBB00990D95 /* JLToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JLToastView.swift; sourceTree = "<group>"; };
+		52F006A41CE5CBBB00990D95 /* JLToastWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JLToastWindow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +206,7 @@
 		52AEBF3C1CE09FCC001BCE1A /* tools */ = {
 			isa = PBXGroup;
 			children = (
+				52F0069F1CE5CBA500990D95 /* JLToast */,
 				52AEBF3D1CE0A068001BCE1A /* KeychainWrapper.swift */,
 				52F006981CE35F4800990D95 /* TableViewCell.swift */,
 			);
@@ -219,6 +229,18 @@
 				52AEBF311CE08BA7001BCE1A /* TodoTableViewController.swift */,
 			);
 			name = todo;
+			sourceTree = "<group>";
+		};
+		52F0069F1CE5CBA500990D95 /* JLToast */ = {
+			isa = PBXGroup;
+			children = (
+				52F006A01CE5CBBB00990D95 /* JLToast.h */,
+				52F006A11CE5CBBB00990D95 /* JLToast.swift */,
+				52F006A21CE5CBBB00990D95 /* JLToastCenter.swift */,
+				52F006A31CE5CBBB00990D95 /* JLToastView.swift */,
+				52F006A41CE5CBBB00990D95 /* JLToastWindow.swift */,
+			);
+			name = JLToast;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,12 +375,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				52AEBF361CE08D7E001BCE1A /* TodoModel.swift in Sources */,
+				52F006A71CE5CBBB00990D95 /* JLToastView.swift in Sources */,
 				52F0069D1CE3B46800990D95 /* EditPopoverViewController.swift in Sources */,
 				52F006991CE35F4900990D95 /* TableViewCell.swift in Sources */,
 				52AEBF2C1CE08B67001BCE1A /* CreateNewUserViewController.swift in Sources */,
 				52AEBF2A1CE08B54001BCE1A /* LoginViewController.swift in Sources */,
 				52AEBF3E1CE0A068001BCE1A /* KeychainWrapper.swift in Sources */,
+				52F006A51CE5CBBB00990D95 /* JLToast.swift in Sources */,
 				13389E1D1CE20F970010F903 /* TabBarViewController.swift in Sources */,
+				52F006A61CE5CBBB00990D95 /* JLToastCenter.swift in Sources */,
 				13167FB11CE3C80400DE1A98 /* ButtonRoundCorners.swift in Sources */,
 				52AEBEFF1CE083A6001BCE1A /* swift_todo_app.xcdatamodeld in Sources */,
 				13167FAF1CE3532C00DE1A98 /* NSDateISO8601.swift in Sources */,
@@ -366,6 +391,7 @@
 				52AEBF341CE08D71001BCE1A /* ApiModel.swift in Sources */,
 				52AEBF321CE08BA7001BCE1A /* TodoTableViewController.swift in Sources */,
 				52AEBF431CE0A109001BCE1A /* User.swift in Sources */,
+				52F006A81CE5CBBB00990D95 /* JLToastWindow.swift in Sources */,
 				52AEBF301CE08B8E001BCE1A /* LogoutViewController.swift in Sources */,
 				52AEBF381CE08D90001BCE1A /* UserModel.swift in Sources */,
 				13389E1B1CE208D20010F903 /* Todo.swift in Sources */,
