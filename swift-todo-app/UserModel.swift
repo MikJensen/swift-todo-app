@@ -15,7 +15,7 @@ class UserModel: NSObject {
     let api = ApiModel()
     
     
-    func login(username: String, password: String, ch: (success: Bool) -> Void){
+    func login(username: String, password: String, ch: (success: Bool, text: String) -> Void){
         
         let api = "/api/user/login"
         let method = "POST"
@@ -27,10 +27,10 @@ class UserModel: NSObject {
                 if json!["success"]! as! Bool{
                     self.loadUserInfo(json!["token"]! as! String, ch: ch)
                 }else{
-                    ch(success: false)
+                    ch(success: false, text: "Brugernavn eller kodeord er forket.")
                 }
             }else{
-                ch(success: false)
+                ch(success: false, text: "Kunne ikke connecte til serveren.")
             }
         }
     }
@@ -52,12 +52,12 @@ class UserModel: NSObject {
                 }
             }else{
                 // status -1
-                ch(success: false, text: "Couldn't connect.")
+                ch(success: false, text: "Kunne ikke connecte til serveren.")
             }
         }
     }
     
-    private func loadUserInfo(token: String, ch: (success: Bool) -> Void){
+    private func loadUserInfo(token: String, ch: (success: Bool, text: String) -> Void){
         let api = "/api/user"
         let method = "GET"
         self.api.request(api: api, method: method, data: "", token: token){
@@ -69,9 +69,9 @@ class UserModel: NSObject {
                 
                 self.user = User(fullname: fullname, age: age, username: username, token: token)
                 self.saveKeychain(self.user!)
-                ch(success: true)
+                ch(success: true, text: "")
             }else{
-                ch(success: false)
+                ch(success: false, text: "Kunne ikke connecte til serveren.")
             }
         }
     }
