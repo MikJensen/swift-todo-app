@@ -25,16 +25,17 @@ class EditPopoverViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        if let selectedIndex = otherVC.todoSelected{ // If user did choose one row
+        // If user did choose one row
+        if let selectedIndex = otherVC.todoSelected{
             todoObj = otherVC.todos[selectedIndex]
             titleField.text = todoObj!.title
         } else {
             segmentedControl.hidden = true
             addButton.setTitle("Tilføj ny", forState: .Normal)
             
-            if let parent = otherVC.todos[0].parent{ // If no row chosen, but array has parent.
-                todoObj = parent
+            // If no row chosen, but array has parent.
+            if otherVC.todos.count > 0 && otherVC.todos[0].parent != nil{
+                todoObj = otherVC.todos[0].parent
             }
         }
     }
