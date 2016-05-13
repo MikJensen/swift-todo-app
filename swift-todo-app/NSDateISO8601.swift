@@ -28,7 +28,6 @@ public extension NSDate{
     func toIsoString() -> String{
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "YYYY-MM-DD'T'HH:mm:ss.SSS'Z'"
-        print(dateFormatter.stringFromDate(self))
         return dateFormatter.stringFromDate(self)
     }
     
