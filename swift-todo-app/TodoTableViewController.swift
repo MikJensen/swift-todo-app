@@ -23,12 +23,19 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
             }
         }
     }
+    
+    var todoModel: TodoModel!
+    
+    let imgChecked = UIImage(named: "checkbox_checked_green")
+    let imgUnchecked = UIImage(named: "checkbox_unchecked")
+    
     var tabBar:TabBarViewController!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tabBar = self.tabBarController as! TabBarViewController
-
+        todoModel = tabBar.todoModel
+        
         if self.todos.count == 0{
             tabBar.todoModel.getTodos{
                 todos in
@@ -142,12 +149,38 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
         }
         
         if todos[indexPath.row].archived != true{
-            cell.achievedImage.image = UIImage(named: "checkbox_unchecked")
+            cell.achievedImage.image = imgUnchecked
         }else{
-            cell.achievedImage.image = UIImage(named: "checkbox_checked_green")
+            cell.achievedImage.image = imgChecked
         }
+        cell.achievedImage.userInteractionEnabled = true
+        let gest = UITapGestureRecognizer(target:self, action:#selector(TodoTableViewController.imageTapped(_:)))
+        cell.achievedImage.addGestureRecognizer(gest)
         
         return cell
+    }
+    
+    func imageTapped(sender: UITapGestureRecognizer){
+        let tapLocation = sender.locationInView(self.tableView)
+        let indexPath = self.tableView.indexPathForRowAtPoint(tapLocation)
+        
+        let selected = todos[indexPath!.row]
+        selected.archived = !selected.archived
+        
+        let row = self.tableView.cellForRowAtIndexPath(indexPath!) as! TableViewCell
+        row.achievedImage.image = (selected.archived) ? imgChecked : imgUnchecked
+
+        todoModel.updateTodo(selected){
+            succes in
+            
+            if !succes {
+                dispatch_async(dispatch_get_main_queue()){
+                    row.achievedImage.image = (!selected.archived) ? self.imgChecked : self.imgUnchecked
+                }
+                JLToast.makeText("Blev ikke opdateret, prøv venligst igen!", duration: JLToastDelay.ShortDelay).show()
+            }
+        }
+        
     }
     
     // TODO: Should be when the accessorytype is selected, instead of rowselect
