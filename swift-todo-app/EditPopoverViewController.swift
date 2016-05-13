@@ -76,6 +76,7 @@ class EditPopoverViewController: UIViewController {
             succes in
             if succes {
                 JLToast.makeText("Todo er sat som udført", duration: JLToastDelay.ShortDelay).show()
+                self.updateAchieved()
             }else{
                 JLToast.makeText("Todo blev ikke opdateret, prøv igen!", duration: JLToastDelay.ShortDelay).show()
             }

@@ -139,12 +139,12 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
         cell.todoLabel.text = todos[indexPath.row].title
         if todos[indexPath.row].children.count == 0{
             cell.accessoryType = .None
-            
-            if achieved != 0{
-                cell.achievedImage.image = UIImage(named: "checkbox_unchecked")
-            }else{
-                cell.achievedImage.image = UIImage(named: "checkbox_checked_green")
-            }
+        }
+        
+        if todos[indexPath.row].archived != true{
+            cell.achievedImage.image = UIImage(named: "checkbox_unchecked")
+        }else{
+            cell.achievedImage.image = UIImage(named: "checkbox_checked_green")
         }
         
         return cell
@@ -152,7 +152,6 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
     
     // TODO: Should be when the accessorytype is selected, instead of rowselect
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print(indexPath.row)
         self.todoSelected = indexPath.row
         if todos[indexPath.row].children.count != 0{
             performSegueWithIdentifier("actionSelectedSegue", sender: self)
