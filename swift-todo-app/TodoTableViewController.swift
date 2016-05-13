@@ -9,7 +9,6 @@
 import UIKit
 
 class TodoTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
-    //var todoArray:[Todo] = []
     var todoSelected: Int?
     var achieved = 0
     var todoObj:Todo!
@@ -47,7 +46,6 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     func reloadTodos(notification: NSNotification){
-        print("test")
         dispatch_async(dispatch_get_main_queue()){
             self.tableView.reloadData()
         }
@@ -62,11 +60,13 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
             dest.todos = todos[self.todoSelected!].children
         }
         if segue.identifier == "seguePopover"{
-            
-            todoObj = todos[self.todoSelected!]
-            let vc = segue.destinationViewController
             let editTodo = segue.destinationViewController as? EditPopoverViewController
-            editTodo?.todoObj = todoObj
+            editTodo?.otherVC = self
+            if todoObj != nil{
+                editTodo?.todoObj = todoObj
+            }
+            
+            let vc = segue.destinationViewController
             editTodo?.todoModel = (self.tabBarController as! TabBarViewController).todoModel
             
             let controller = vc.popoverPresentationController
@@ -177,10 +177,15 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
         let add = UITableViewRowAction(style: .Normal, title: "Rediger"){
             action, btnIndexPath in
             self.todoSelected = indexPath.row
+            self.todoObj = self.todos[self.todoSelected!]
             self.performSegueWithIdentifier("seguePopover", sender: self)
         }
         
         return [delete, add]
+    }
+    @IBAction func barButtonAction(sender: AnyObject) {
+        todoObj = nil
+        performSegueWithIdentifier("seguePopover", sender: self)
     }
 
     /*

@@ -14,21 +14,23 @@ class EditPopoverViewController: UIViewController {
     @IBOutlet weak var titleField: UITextField!
    
     @IBOutlet weak var addButton: UIButton!
-    @IBOutlet weak var markDoneButton: UIButton!
     @IBOutlet weak var achievedLabel: UILabel!
     
-    let checked = UIImage(named: "checbox_unchecked")
-    let unchecked = UIImage(named: "checkox_checked_green")
-    
-    var todoObj:Todo!
+    var todoObj:Todo?
     
     var todoModel:TodoModel!
     
+    var otherVC: TodoTableViewController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleField.text = "\(todoObj.title)"
-        self.markDoneButton.setBackgroundImage(self.checked, forState: .Normal)
-        updateAchieved()
+        print("Object \(todoObj)")
+        if todoObj != nil{
+            titleField.text = "\(todoObj!.title)"
+        }else{
+            segmentedControl.hidden = true
+            addButton.setTitle("Tilføj ny", forState: .Normal)
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -36,23 +38,11 @@ class EditPopoverViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func updateAchieved(){
-        dispatch_async(dispatch_get_main_queue()){
-            self.achievedLabel.text = ""
-            if self.todoObj.archived == false{
-                self.achievedLabel.text = "Ikke udført"
-                self.markDoneButton.setBackgroundImage(self.unchecked, forState: .Normal)
-            }else{
-                self.achievedLabel.text = "Udført"
-                self.markDoneButton.setBackgroundImage(self.checked, forState: .Normal)
-            }
-        }
-    }
     @IBAction func segmentedAction(sender: AnyObject) {
         switch segmentedControl.selectedSegmentIndex{
         case 0:
             addButton.setTitle("Rediger", forState: .Normal)
-            titleField.text = "\(todoObj.title)";
+            titleField.text = "\(todoObj!.title)";
         case 1:
             addButton.setTitle("Tilføj ny", forState: .Normal)
             titleField.text = ""
@@ -64,36 +54,17 @@ class EditPopoverViewController: UIViewController {
         if addButton.titleLabel!.text == "Rediger"{
             
         }else{
-            todoModel.postNewTodo(titleField.text!, date: NSDate(), root: todoObj.root ?? todoObj, parent: todoObj){
+            todoModel.postNewTodo(titleField.text!, date: NSDate(), root: todoObj?.root ?? todoObj, parent: todoObj){
                 todo in
                 if let todo = todo{
                     JLToast.makeText("Todo blev gemt", duration: JLToastDelay.ShortDelay).show()
                     self.presentingViewController?.dismissViewControllerAnimated(true, completion: {})
-                    self.todoObj.addChild(todo)
-                     NSNotificationCenter.defaultCenter().postNotificationName("reload", object: nil)
+                    self.todoObj?.addChild(todo)
+                    self.otherVC.todos.append(todo)
+                    NSNotificationCenter.defaultCenter().postNotificationName("reload", object: nil)
                 }else{
                     JLToast.makeText("Todo blev ikke gemt, prøv igen!", duration: JLToastDelay.ShortDelay).show()
                 }
-            }
-        }
-    }
-    @IBAction func achievedAction(sender: AnyObject) {
-        todoObj.archived = !todoObj.archived
-        var text = ""
-        if todoObj.archived{
-            text = "Todo er sat som udført!"
-        }else{
-            text = "Todo er sat som ikke udført!"
-        }
-        todoModel.updateTodo(todoObj){
-            succes in
-            if succes {
-                JLToast.makeText(text, duration: JLToastDelay.ShortDelay).show()
-                dispatch_async(dispatch_get_main_queue()){
-                    self.updateAchieved()
-                }
-            }else{
-                JLToast.makeText("Todo blev ikke opdateret, prøv igen!", duration: JLToastDelay.ShortDelay).show()
             }
         }
     }
