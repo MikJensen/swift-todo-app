@@ -107,6 +107,7 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
         
         self.presentViewController(alert, animated: true, completion: nil)
     }
+    
     func handleDeleteTodo(alertAction: UIAlertAction!) -> Void{
         if let indexPath = todoSelected
         {
