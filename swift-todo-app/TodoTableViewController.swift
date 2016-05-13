@@ -11,7 +11,7 @@ import UIKit
 class TodoTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
     var todoSelected: Int?
     var achieved = 0
-    var todoObj:Todo!
+    // var todoObj:Todo!
     
     //@IBOutlet var todoTable: UITableView!
     var deleteTodoIndexPath: NSIndexPath? = nil
@@ -69,17 +69,18 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
         if segue.identifier == "seguePopover"{
             let editTodo = segue.destinationViewController as? EditPopoverViewController
             editTodo?.otherVC = self
-            if todoObj != nil{
-                editTodo?.todoObj = todoObj
-            }
+            //if todoObj != nil{
+            //    editTodo?.todoObj = todoObj
+            //}
             
-            let vc = segue.destinationViewController
-            editTodo?.todoModel = (self.tabBarController as! TabBarViewController).todoModel
+            // let vc = segue.destinationViewController
+            // editTodo?.todoModel = (self.tabBarController as! TabBarViewController).todoModel
             
-            let controller = vc.popoverPresentationController
             
-            if controller != nil
-            {
+            // ---
+            let controller = editTodo!.popoverPresentationController
+            
+            if controller != nil{
                 controller?.delegate = self
             }
         }
@@ -210,14 +211,14 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
         let add = UITableViewRowAction(style: .Normal, title: "Rediger"){
             action, btnIndexPath in
             self.todoSelected = indexPath.row
-            self.todoObj = self.todos[self.todoSelected!]
+            // self.todoObj = self.todos[self.todoSelected!]
             self.performSegueWithIdentifier("seguePopover", sender: self)
         }
         
         return [delete, add]
     }
     @IBAction func barButtonAction(sender: AnyObject) {
-        todoObj = nil
+        // todoObj = nil
         performSegueWithIdentifier("seguePopover", sender: self)
     }
 
