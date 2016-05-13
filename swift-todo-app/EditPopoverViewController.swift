@@ -17,6 +17,9 @@ class EditPopoverViewController: UIViewController {
     @IBOutlet weak var markDoneButton: UIButton!
     @IBOutlet weak var achievedLabel: UILabel!
     
+    let checked = UIImage(named: "checbox_unchecked")
+    let unchecked = UIImage(named: "checkox_checked_green")
+    
     var todoObj:Todo!
     
     var todoModel:TodoModel!
@@ -24,6 +27,7 @@ class EditPopoverViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         titleField.text = "\(todoObj.title)"
+        self.markDoneButton.setBackgroundImage(self.checked, forState: .Normal)
         updateAchieved()
         // Do any additional setup after loading the view.
     }
@@ -33,12 +37,15 @@ class EditPopoverViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     func updateAchieved(){
-        if todoObj.archived == false{
-            achievedLabel.text = "Ikke udført"
-            markDoneButton.setImage(UIImage(named: "checbox_unchecked"), forState: .Normal)
-        }else{
-            achievedLabel.text = "Udført"
-            markDoneButton.setImage(UIImage(named: "checkox_checked_green"), forState: .Normal)
+        dispatch_async(dispatch_get_main_queue()){
+            self.achievedLabel.text = ""
+            if self.todoObj.archived == false{
+                self.achievedLabel.text = "Ikke udført"
+                self.markDoneButton.setBackgroundImage(self.unchecked, forState: .Normal)
+            }else{
+                self.achievedLabel.text = "Udført"
+                self.markDoneButton.setBackgroundImage(self.checked, forState: .Normal)
+            }
         }
     }
     @IBAction func segmentedAction(sender: AnyObject) {
@@ -71,12 +78,20 @@ class EditPopoverViewController: UIViewController {
         }
     }
     @IBAction func achievedAction(sender: AnyObject) {
-        todoObj.archived = true
+        todoObj.archived = !todoObj.archived
+        var text = ""
+        if todoObj.archived{
+            text = "Todo er sat som udført!"
+        }else{
+            text = "Todo er sat som ikke udført!"
+        }
         todoModel.updateTodo(todoObj){
             succes in
             if succes {
-                JLToast.makeText("Todo er sat som udført", duration: JLToastDelay.ShortDelay).show()
-                self.updateAchieved()
+                JLToast.makeText(text, duration: JLToastDelay.ShortDelay).show()
+                dispatch_async(dispatch_get_main_queue()){
+                    self.updateAchieved()
+                }
             }else{
                 JLToast.makeText("Todo blev ikke opdateret, prøv igen!", duration: JLToastDelay.ShortDelay).show()
             }

@@ -354,7 +354,7 @@
                                     <constraint firstAttribute="height" constant="20" id="YyU-8x-g0b"/>
                                     <constraint firstAttribute="width" constant="20" id="t1Y-KS-EcO"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="checkbox_unchecked">
+                                <state key="normal">
                                     <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -533,7 +533,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="checkbox_unchecked" width="48" height="48"/>
         <image name="list" width="75" height="75"/>
         <image name="logout" width="75" height="75"/>
         <image name="settings" width="75" height="75"/>
