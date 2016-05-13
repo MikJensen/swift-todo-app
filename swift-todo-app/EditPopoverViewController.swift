@@ -15,6 +15,7 @@ class EditPopoverViewController: UIViewController {
    
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var markDoneButton: UIButton!
+    @IBOutlet weak var achievedLabel: UILabel!
     
     var todoObj:Todo!
     
@@ -22,14 +23,23 @@ class EditPopoverViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleField.text = "\(todoObj.title)";
-        
+        titleField.text = "\(todoObj.title)"
+        updateAchieved()
         // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    func updateAchieved(){
+        if todoObj.archived == false{
+            achievedLabel.text = "Ikke udført"
+            markDoneButton.setImage(UIImage(named: "checbox_unchecked"), forState: .Normal)
+        }else{
+            achievedLabel.text = "Udført"
+            markDoneButton.setImage(UIImage(named: "checkox_checked_green"), forState: .Normal)
+        }
     }
     @IBAction func segmentedAction(sender: AnyObject) {
         switch segmentedControl.selectedSegmentIndex{
@@ -44,7 +54,7 @@ class EditPopoverViewController: UIViewController {
         }
     }
     @IBAction func addButtonAction(sender: UIButton) {
-        if addButton.titleLabel == "Rediger"{
+        if addButton.titleLabel!.text == "Rediger"{
             
         }else{
             todoModel.postNewTodo(titleField.text!, date: NSDate(), root: todoObj.root ?? todoObj, parent: todoObj){
@@ -57,6 +67,17 @@ class EditPopoverViewController: UIViewController {
                 }else{
                     JLToast.makeText("Todo blev ikke gemt, prøv igen!", duration: JLToastDelay.ShortDelay).show()
                 }
+            }
+        }
+    }
+    @IBAction func achievedAction(sender: AnyObject) {
+        todoObj.archived = true
+        todoModel.updateTodo(todoObj){
+            succes in
+            if succes {
+                JLToast.makeText("Todo er sat som udført", duration: JLToastDelay.ShortDelay).show()
+            }else{
+                JLToast.makeText("Todo blev ikke opdateret, prøv igen!", duration: JLToastDelay.ShortDelay).show()
             }
         }
     }

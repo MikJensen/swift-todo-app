@@ -310,7 +310,7 @@
                                     <constraint firstAttribute="height" constant="30" id="ILO-Sr-4xt"/>
                                     <constraint firstAttribute="width" constant="200" id="Y2k-8h-hN4"/>
                                 </constraints>
-                                <state key="normal" title="Tilføj">
+                                <state key="normal" title="Rediger">
                                     <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <variation key="default">
@@ -357,6 +357,9 @@
                                 <state key="normal" backgroundImage="checkbox_unchecked">
                                     <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="achievedAction:" destination="6O7-NF-0yT" eventType="touchUpInside" id="IU8-jr-2HF"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -394,6 +397,7 @@
                     <value key="contentSizeForViewInPopover" type="size" width="220" height="200"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="achievedLabel" destination="a7k-FQ-cKK" id="hQL-v2-nay"/>
                         <outlet property="addButton" destination="V9i-0x-ZCe" id="RM9-KY-R8y"/>
                         <outlet property="markDoneButton" destination="LPV-H7-bky" id="EbM-Xl-DRz"/>
                         <outlet property="segmentedControl" destination="Ygm-uU-8Yl" id="PCS-Gs-Oiy"/>
