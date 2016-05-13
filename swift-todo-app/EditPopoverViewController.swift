@@ -30,6 +30,9 @@ class EditPopoverViewController: UIViewController {
         }else{
             segmentedControl.hidden = true
             addButton.setTitle("Tilføj ny", forState: .Normal)
+            if otherVC.todos.count > 0{
+                todoObj = otherVC.todos[0].parent
+            }
         }
         // Do any additional setup after loading the view.
     }
