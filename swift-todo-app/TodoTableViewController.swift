@@ -218,7 +218,7 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
         return [delete, add]
     }
     @IBAction func barButtonAction(sender: AnyObject) {
-        // todoObj = nil
+        self.todoSelected = nil
         performSegueWithIdentifier("seguePopover", sender: self)
     }
 

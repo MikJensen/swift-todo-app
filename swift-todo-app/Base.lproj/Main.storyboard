@@ -3,6 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -345,15 +347,48 @@
                                     <action selector="segmentedAction:" destination="6O7-NF-0yT" eventType="valueChanged" id="f8k-Ec-zLa"/>
                                 </connections>
                             </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fWW-KO-jII">
+                                <rect key="frame" x="60" y="48" width="200" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bdu-PF-Tdw">
+                                <rect key="frame" x="60" y="157" width="200" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="MNw-do-cv8"/>
+                                    <constraint firstAttribute="height" constant="30" id="f4L-2h-Vkj"/>
+                                </constraints>
+                                <state key="normal" title="Slet">
+                                    <color key="titleColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="MNw-do-cv8"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="removeButtonAction:" destination="6O7-NF-0yT" eventType="touchUpInside" id="q01-nm-9AK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Ygm-uU-8Yl" firstAttribute="centerX" secondItem="lTy-QN-7jS" secondAttribute="centerX" id="0b6-EE-BiY"/>
                             <constraint firstItem="rdS-Rk-Yft" firstAttribute="trailing" secondItem="V9i-0x-ZCe" secondAttribute="trailing" id="4Zl-dT-HMd"/>
+                            <constraint firstItem="fWW-KO-jII" firstAttribute="trailing" secondItem="Ygm-uU-8Yl" secondAttribute="trailing" id="7Ec-q5-hQv"/>
+                            <constraint firstItem="fWW-KO-jII" firstAttribute="centerY" secondItem="Ygm-uU-8Yl" secondAttribute="centerY" id="Aud-5K-Uaj"/>
                             <constraint firstItem="rdS-Rk-Yft" firstAttribute="leading" secondItem="V9i-0x-ZCe" secondAttribute="leading" id="BZq-Ta-dY4"/>
                             <constraint firstItem="rdS-Rk-Yft" firstAttribute="trailing" secondItem="Ygm-uU-8Yl" secondAttribute="trailing" id="F0K-3C-bWs"/>
+                            <constraint firstItem="fWW-KO-jII" firstAttribute="baseline" secondItem="Ygm-uU-8Yl" secondAttribute="firstBaseline" id="F2b-7b-MwK"/>
+                            <constraint firstItem="fWW-KO-jII" firstAttribute="leading" secondItem="Ygm-uU-8Yl" secondAttribute="leading" id="GzG-o6-Atm"/>
+                            <constraint firstItem="bdu-PF-Tdw" firstAttribute="leading" secondItem="V9i-0x-ZCe" secondAttribute="leading" id="LXK-FW-L7S"/>
+                            <constraint firstItem="bdu-PF-Tdw" firstAttribute="trailing" secondItem="V9i-0x-ZCe" secondAttribute="trailing" id="PK0-1F-e53"/>
                             <constraint firstItem="V9i-0x-ZCe" firstAttribute="top" secondItem="rdS-Rk-Yft" secondAttribute="bottom" constant="8" symbolic="YES" id="RZJ-MQ-xVx"/>
                             <constraint firstItem="rdS-Rk-Yft" firstAttribute="centerX" secondItem="lTy-QN-7jS" secondAttribute="centerX" id="ST6-iU-QY8"/>
+                            <constraint firstItem="bdu-PF-Tdw" firstAttribute="top" secondItem="V9i-0x-ZCe" secondAttribute="bottom" constant="8" symbolic="YES" id="SxC-sU-Feo"/>
+                            <constraint firstItem="fWW-KO-jII" firstAttribute="firstBaseline" secondItem="Ygm-uU-8Yl" secondAttribute="baseline" id="Veb-hn-VRo"/>
                             <constraint firstItem="rdS-Rk-Yft" firstAttribute="leading" secondItem="Ygm-uU-8Yl" secondAttribute="leading" id="jHX-GY-vP7"/>
                             <constraint firstItem="Ygm-uU-8Yl" firstAttribute="top" secondItem="1DT-hC-NLu" secondAttribute="bottom" constant="25" id="l3f-Ic-4cN"/>
                             <constraint firstItem="rdS-Rk-Yft" firstAttribute="top" secondItem="Ygm-uU-8Yl" secondAttribute="bottom" constant="8" symbolic="YES" id="oZJ-QR-PqR"/>
@@ -368,10 +403,12 @@
                             </mask>
                         </variation>
                     </view>
-                    <value key="contentSizeForViewInPopover" type="size" width="220" height="140"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="220" height="178"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="addButton" destination="V9i-0x-ZCe" id="RM9-KY-R8y"/>
+                        <outlet property="messageLabel" destination="fWW-KO-jII" id="htb-Fh-HOv"/>
+                        <outlet property="removeButton" destination="bdu-PF-Tdw" id="zql-LF-ixR"/>
                         <outlet property="segmentedControl" destination="Ygm-uU-8Yl" id="PCS-Gs-Oiy"/>
                         <outlet property="titleField" destination="rdS-Rk-Yft" id="DuE-b7-5ry"/>
                     </connections>

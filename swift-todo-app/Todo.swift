@@ -12,7 +12,11 @@ class Todo: NSObject {
     
     var id: String
     var title: String
-    var archived: Bool
+    var archived: Bool{
+        willSet(newVal){
+            self.sendNotification(newVal)
+        }
+    }
     var date: NSDate
     var children: [Todo] = []
     
@@ -24,6 +28,10 @@ class Todo: NSObject {
         self.title = title
         self.archived = archived
         self.date = date
+        super.init()
+        if !archived{
+            sendNotification(archived)
+        }
     }
     
     init(id: String, title: String, archived: Bool, date: NSDate, parent: Todo?, root: Todo?){
@@ -33,6 +41,10 @@ class Todo: NSObject {
         self.date = date
         self.parent = parent
         self.root = root
+        super.init()
+        if !archived{
+            sendNotification(archived)
+        }
     }
     
     func addChild(child: Todo){
@@ -40,7 +52,8 @@ class Todo: NSObject {
     }
     
     
-    // TODO: I don't remember how the one liner get/set in swift was.
-   
+    private func sendNotification(archived: Bool){
+        NSNotificationCenter.defaultCenter().postNotificationName("archived", object: archived)
+    }
     
 }

@@ -14,7 +14,9 @@ class EditPopoverViewController: UIViewController {
     @IBOutlet weak var titleField: UITextField!
    
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var removeButton: UIButton!
     @IBOutlet weak var achievedLabel: UILabel!
+    @IBOutlet weak var messageLabel: UILabel!
     
     var todoObj:Todo?
     
@@ -27,10 +29,13 @@ class EditPopoverViewController: UIViewController {
         
         // If user did choose one row
         if let selectedIndex = otherVC.todoSelected{
+            messageLabel.hidden = true
             todoObj = otherVC.todos[selectedIndex]
             titleField.text = todoObj!.title
         } else {
             segmentedControl.hidden = true
+            removeButton.hidden = true
+            messageLabel.text = "Tilføj ny"
             addButton.setTitle("Tilføj ny", forState: .Normal)
             
             // If no row chosen, but array has parent.
@@ -39,7 +44,9 @@ class EditPopoverViewController: UIViewController {
             }
         }
     }
-
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -89,6 +96,11 @@ class EditPopoverViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func removeButtonAction(sender: UIButton) {
+        print("Remove")
+    }
+    
 
     /*
     // MARK: - Navigation

@@ -24,10 +24,38 @@ class TabBarViewController: UITabBarController {
     var userModel: UserModel!
     var todoModel: TodoModel!
     
+    private var count = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.todoModel = TodoModel(userModel: userModel)
+        
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.renameThisFunc(_:)),name:"archived", object: nil)
+        
+    }
+    
+    
+    
+    func renameThisFunc(notification: NSNotification){
+        if let archived = notification.object as? Bool{
+            let tabArray = self.tabBar.items as NSArray!
+            let barItem = (tabArray.objectAtIndex(0) as! UITabBarItem)
+            
+            count = count + (archived ? -1 : 1)
+            
+            dispatch_async(dispatch_get_main_queue()){
+                if self.count > 0{
+                    barItem.badgeValue = "\(self.count)"
+                }else {
+                    barItem.badgeValue = nil
+                }
+            }
+            print(count)
+            
+            
+        }
     }
 
     override func didReceiveMemoryWarning() {
