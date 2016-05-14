@@ -2,7 +2,7 @@
 //  Todo+CoreDataProperties.swift
 //  swift-todo-app
 //
-//  Created by Jógvan Olsen on 5/12/16.
+//  Created by Jógvan Olsen on 5/14/16.
 //  Copyright © 2016 Mik Jensen. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -12,13 +12,16 @@
 import Foundation
 import CoreData
 
-extension Todo2 {
+extension Todo {
 
+    /*
+    @NSManaged var archived: NSNumber?
+    @NSManaged var date: NSDate?
     @NSManaged var id: String?
     @NSManaged var title: String?
-    @NSManaged var date: NSDate?
-    @NSManaged var archived: NSNumber?
     @NSManaged var parent: Todo?
     @NSManaged var root: Todo?
+    @NSManaged var children: NSSet?
+    */
 
 }

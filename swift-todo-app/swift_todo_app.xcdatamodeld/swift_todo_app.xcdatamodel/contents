@@ -5,10 +5,11 @@
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Todo" inverseName="parent" inverseEntity="Todo" syncable="YES"/>
-        <relationship name="root" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Todo" inverseName="root" inverseEntity="Todo" syncable="YES"/>
+        <relationship name="children" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Todo" inverseName="parent" inverseEntity="Todo" syncable="YES"/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Todo" inverseName="children" inverseEntity="Todo" syncable="YES"/>
+        <relationship name="root" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Todo" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Todo" positionX="-45" positionY="0" width="128" height="135"/>
+        <element name="Todo" positionX="-470" positionY="3432" width="128" height="148"/>
     </elements>
 </model>

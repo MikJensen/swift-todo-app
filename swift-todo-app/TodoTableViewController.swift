@@ -65,7 +65,8 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "actionSelectedSegue"{
             let dest = segue.destinationViewController as! TodoTableViewController
-            dest.todos = todos[self.todoSelected!].children
+            print("Fix this again!")
+            // dest.todos = todos[self.todoSelected!].children
         }
         if segue.identifier == "seguePopover"{
             let editTodo = segue.destinationViewController as? EditPopoverViewController
@@ -150,9 +151,13 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TableViewCell
         
         cell.todoLabel.text = todos[indexPath.row].title
+        
+        print("Fix This!")
+        /*
         if todos[indexPath.row].children.count == 0{
             cell.accessoryType = .None
         }
+        */
         
         if todos[indexPath.row].archived != true{
             cell.achievedImage.image = imgUnchecked
@@ -192,9 +197,12 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
     // TODO: Should be when the accessorytype is selected, instead of rowselect
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.todoSelected = indexPath.row
+        print("Fix This!")
+        /*
         if todos[indexPath.row].children.count != 0{
             performSegueWithIdentifier("actionSelectedSegue", sender: self)
         }
+         */
         
     }
     

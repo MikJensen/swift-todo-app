@@ -7,31 +7,74 @@
 //
 
 import UIKit
+import CoreData
 
-class Todo: NSObject {
+class Todo: NSManagedObject {
     
-    var id: String
-    var title: String
-    var archived: Bool{
-        willSet(newVal){
-            self.sendNotification(newVal)
+    static var managedContext: NSManagedObjectContext!
+    static var todos:[Todo] = []
+    
+    @NSManaged var id: String
+    @NSManaged var title: String
+    @NSManaged var archived: Bool
+    @NSManaged var date: NSDate
+    
+    @NSManaged var parent: Todo?
+    @NSManaged var root: Todo?
+    var children: NSSet?
+    
+    static func buildTodo(id:String, title: String, date: NSDate, archived: Bool, parent: Todo? = nil, root: Todo? = nil) -> Todo{
+        let todo = NSEntityDescription.insertNewObjectForEntityForName("Todo", inManagedObjectContext: managedContext) as! Todo
+        todo.id = id
+        todo.title = title
+        todo.date = date
+        todo.archived = archived
+        
+        if parent != nil && root != nil{
+            todo.parent = parent!
+            todo.root = root!
+            todo.parent!.addChild(todo)
+        }else{
+            todos.append(todo)
+        }
+        
+        return todo
+    }
+    
+    static func loadAll(){
+        let groupRequest = NSFetchRequest(entityName: "Todo")
+        do{
+            // Groups
+            let groupResults = try managedContext.executeFetchRequest(groupRequest)
+            
+            let allTodos = groupResults as! [Todo]
+            
+            for todo in allTodos{
+                print(todo.title)
+                print(todo.archived)
+                print("--------")
+            }
+            
+        }catch let error as NSError{
+            print("Error 'load' function (CoreData): \(error)")
         }
     }
-    var date: NSDate
-    var children: [Todo] = []
     
-    var parent: Todo?
-    var root: Todo?
+    static func saveAll(){
+        do{
+            try managedContext.save()
+            self.load()
+        }catch let error as NSError{
+            print("Error in 'save' function in Todo (CoreData): \(error)")
+        }
+    }
     
-    init(id: String, title: String, archived: Bool, date: NSDate){
+    /*
+    func yest(id: String, title: String, archived: Bool, date: NSDate){
         self.id = id
         self.title = title
         self.archived = archived
         self.date = date
-        super.init()
-        if !archived{
-            sendNotification(archived)
-        }
     }
     
     init(id: String, title: String, archived: Bool, date: NSDate, parent: Todo?, root: Todo?){
@@ -41,19 +84,13 @@ class Todo: NSObject {
         self.date = date
         self.parent = parent
         self.root = root
-        super.init()
-        if !archived{
-            sendNotification(archived)
-        }
     }
+    */
     
     func addChild(child: Todo){
-        self.children.append(child)
+        print("Do something about this!")
+    //    self.children.append(child)
     }
     
-    
-    private func sendNotification(archived: Bool){
-        NSNotificationCenter.defaultCenter().postNotificationName("archived", object: archived)
-    }
     
 }

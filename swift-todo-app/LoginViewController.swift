@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class LoginViewController: UIViewController {
     
@@ -17,9 +18,26 @@ class LoginViewController: UIViewController {
     
     var userModel = UserModel()
     
+    var managedContext: NSManagedObjectContext!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // TODO: 
+        let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate
+        Todo.managedContext = appDelegate?.managedObjectContext
+        
+        userModel.login("jeggy", password: "password", ch: {_,_ in
+        
+        let tm = TodoModel(userModel: self.userModel)
+        tm.getTodos{
+            todos in
+            print(todos.count)
+        }
+        })
+        //saveItem("asdf", title: "Bongo", date: NSDate(), archived: true)
+        //load()
+        /*
         if userModel.getUser() != nil{
             dispatch_async(dispatch_get_main_queue()){
                 self.performSegueWithIdentifier("segueLogin", sender: self)
@@ -28,7 +46,50 @@ class LoginViewController: UIViewController {
         
         errorMessageLabel.hidden = true
         setLoading(false)
+ */
     }
+    
+    
+    var todos: [Todo] = []
+    func load(){
+        let groupRequest = NSFetchRequest(entityName: "Todo")
+        do{
+            // Groups
+            let groupResults = try managedContext.executeFetchRequest(groupRequest)
+            
+            let allTodos = groupResults as! [Todo]
+            
+            for todo in allTodos{
+                print(todo.title)
+                print(todo.archived)
+                print("--------")
+            }
+            
+        }catch let error as NSError{
+            print("Error 'load' function (CoreData): \(error)")
+        }
+    }
+    
+    func saveItem(id:String, title: String, date: NSDate, archived: Bool){
+        let todo = NSEntityDescription.insertNewObjectForEntityForName("Todo", inManagedObjectContext: managedContext) as! Todo
+        todo.id = id
+        todo.title = title
+        todo.date = date
+        todo.archived = archived
+        
+        
+        //todo.belongsTo = self.currentSelectedGroup
+            
+        do{
+            try managedContext.save()
+            self.load()
+        }catch let error as NSError{
+            print("Error 'saveItem' function (CoreData): \(error)")
+        }
+    }
+    
+    
+    // -----
     
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
         return false

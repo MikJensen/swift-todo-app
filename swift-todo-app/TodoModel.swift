@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class TodoModel: NSObject {
     
@@ -65,8 +66,9 @@ class TodoModel: NSObject {
                 let archived = json!["archived"] as! Bool
                 // let date = NSDate(iso8601: json!["date"] as! String) // Bug in server
                 
-                let newTodo = Todo(id: id, title: title, archived: archived, date: date ?? NSDate(), parent: parent, root: root)
-                ch(todo: newTodo)
+                //let newTodo = Todo(id: id, title: title, archived: archived, date: date ?? NSDate(), parent: parent, root: root)
+                //ch(todo: newTodo)
+                ch(todo: nil)
             } else{
                 // Status = 400(Bad Request) and maybe other errors
                 ch(todo: nil)
@@ -104,14 +106,16 @@ class TodoModel: NSObject {
     }
     
     private func buildTodo(node: NSDictionary, parent: Todo?) -> Todo{
-        let id = node["_id"] as! String
-        let title = node["title"] as! String
-        let archived = node["archived"] as! Bool
-        let date = NSDate(iso8601: node["date"] as! String)
+        let todo = NSEntityDescription.insertNewObjectForEntityForName("Todo", inManagedObjectContext: Todo.managedContext) as! Todo
         
-        let todo = Todo(id: id, title: title, archived: archived, date: date)
-
-        //todo.root = nil
+        todo.id = node["_id"] as! String
+        todo.title = node["title"] as! String
+        todo.archived = node["archived"] as! Bool
+        todo.date = NSDate(iso8601: node["date"] as! String)
+        
+        //let todo = Todo(id: id, title: title, archived: archived, date: date)
+        
+        
         
         if let parent = parent{
             todo.parent = parent
