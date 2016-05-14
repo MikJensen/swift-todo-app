@@ -14,7 +14,6 @@ class EditPopoverViewController: UIViewController {
     @IBOutlet weak var titleField: UITextField!
    
     @IBOutlet weak var addButton: UIButton!
-    @IBOutlet weak var removeButton: UIButton!
     @IBOutlet weak var achievedLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
     
@@ -34,7 +33,6 @@ class EditPopoverViewController: UIViewController {
             titleField.text = todoObj!.title
         } else {
             segmentedControl.hidden = true
-            removeButton.hidden = true
             messageLabel.text = "Tilføj ny"
             addButton.setTitle("Tilføj ny", forState: .Normal)
             
@@ -95,10 +93,6 @@ class EditPopoverViewController: UIViewController {
                 }
             }
         }
-    }
-    
-    @IBAction func removeButtonAction(sender: UIButton) {
-        print("Remove")
     }
     
 

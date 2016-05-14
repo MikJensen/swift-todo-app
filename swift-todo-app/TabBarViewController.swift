@@ -40,10 +40,9 @@ class TabBarViewController: UITabBarController {
     
     func renameThisFunc(notification: NSNotification){
         if let archived = notification.object as? Bool{
+            count = count + (archived ? -1 : 1)
             let tabArray = self.tabBar.items as NSArray!
             let barItem = (tabArray.objectAtIndex(0) as! UITabBarItem)
-            
-            count = count + (archived ? -1 : 1)
             
             dispatch_async(dispatch_get_main_queue()){
                 if self.count > 0{
@@ -52,9 +51,6 @@ class TabBarViewController: UITabBarController {
                     barItem.badgeValue = nil
                 }
             }
-            print(count)
-            
-            
         }
     }
 

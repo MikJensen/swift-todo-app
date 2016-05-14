@@ -53,6 +53,7 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     func reloadTodos(notification: NSNotification){
+        print("Doing this!")
         dispatch_async(dispatch_get_main_queue()){
             self.tableView.reloadData()
         }
@@ -105,7 +106,7 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
     // MARK: - Alert
     
     func confirmDelete(todo: String){
-        let alert = UIAlertController(title: "Slet todo", message: "Er du sikker på at du vil slette todo \"\(todo)\" permanent?", preferredStyle: .ActionSheet)
+        let alert = UIAlertController(title: "Slet \"\(todo)\" todo", message: "Er du sikker på at du vil slette todo \"\(todo)\" permanent?\nDen Vil også slette todos under den her todo!", preferredStyle: .ActionSheet)
         
         let DeleteAction = UIAlertAction(title: "Slet", style: .Destructive, handler: handleDeleteTodo)
         let CancelAction = UIAlertAction(title: "Annuller", style: .Cancel, handler: cancelDeleteTodo)
@@ -119,17 +120,21 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
     func handleDeleteTodo(alertAction: UIAlertAction!) -> Void{
         if let indexPath = todoSelected
         {
-            tableView.beginUpdates()
+            // tableView.beginUpdates()
             tabBar.todoModel.removeTodo(todos[indexPath]){
                 succes in
                 if succes{
-                    NSNotificationCenter.defaultCenter().postNotificationName("reload", object: nil)
+                    print(indexPath)
+                    print(self.todos.count)
+                        self.todos.removeAtIndex(indexPath)
                 }else{
                     
                 }
+                /*
                 dispatch_async(dispatch_get_main_queue()){
                     self.tableView.endUpdates()
                 }
+                */
             }
         }
     }
