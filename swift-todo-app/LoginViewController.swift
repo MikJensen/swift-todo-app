@@ -44,22 +44,25 @@ class LoginViewController: UIViewController {
     @IBAction func loginPressed(sender: UIButton) {
         setLoading(true)
         userModel.login(usernameField.text!, password: passwordField.text!){
-            success in
+            success, errorMessage in
             dispatch_async(dispatch_get_main_queue()){
                 self.setLoading(false)
                 if success{
                     self.performSegueWithIdentifier("segueLogin", sender: self)
                 }else{
                     self.errorMessageLabel.hidden = false
-                    self.errorMessageLabel.text = "Username or password is wrong."
+                    self.errorMessageLabel.text = errorMessage
                 }
             }
         }
     }
     
+    @IBAction func registerPressed(sender: UIButton) {
+        performSegueWithIdentifier("segueRegister", sender: self)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func setLoading(loading: Bool){

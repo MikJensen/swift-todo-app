@@ -38,7 +38,7 @@ class ApiModel: NSObject {
             data, response, error in
 
             if (error != nil) {
-                print("Couldn't connect to server: \(error)")
+                //print("Couldn't connect to server: \(error)")
                 ch(jsonData: nil, statusCodeReturned: -1)
             } else {
                 let status = (response as! NSHTTPURLResponse).statusCode
@@ -47,9 +47,9 @@ class ApiModel: NSObject {
                     if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as? NSDictionary {
                         ch(jsonData: json, statusCodeReturned: status)
                     }
-                } catch let error as NSError {
+                } catch _ as NSError {
                     // Should never happen!
-                    print("error in catch: \(error.localizedDescription)")
+                    //print("error in catch: \(error.localizedDescription)")
                     ch(jsonData: nil, statusCodeReturned: -1)
                 }
             }

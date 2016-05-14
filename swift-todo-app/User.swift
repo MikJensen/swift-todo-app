@@ -21,19 +21,6 @@ class User: NSObject, NSCoding {
         self.token = token
     }
     
-    func getFullname()->String{
-        return self.fullname
-    }
-    func getAge()->Int{
-        return self.age
-    }
-    func getUsername()->String{
-        return self.username
-    }
-    func geToken()->String{
-        return self.token
-    }
-    
     // MARK: NSCoding
     
     required convenience init?(coder decoder: NSCoder)
