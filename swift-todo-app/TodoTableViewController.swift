@@ -35,13 +35,14 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
         // if todos is empty, load all from the API
         if self.todos.count == 0{
             loadFromApi()
+            
+            // Enable refresh only for root, as API doesn't support fetching from a specified ID
+            self.refreshControl = UIRefreshControl()
+            self.refreshControl!.addTarget(self, action: #selector(TodoTableViewController.loadFromApi(_:)), forControlEvents: UIControlEvents.ValueChanged)
         } else {
             self.navigationItem.title = todos[0].parent?.title
         }
         
-        // Enable refreshcontrol for tableview
-        self.refreshControl = UIRefreshControl()
-        self.refreshControl!.addTarget(self, action: #selector(TodoTableViewController.loadFromApi(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
         // Listen for the "reload" notification
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.reloadTodos(_:)),name:"reload", object: nil)
