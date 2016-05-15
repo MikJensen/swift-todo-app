@@ -195,8 +195,8 @@
 			children = (
 				52F0069E1CE3B58B00990D95 /* todo */,
 				52AEBF291CE08B54001BCE1A /* LoginViewController.swift */,
-				52AEBF2B1CE08B67001BCE1A /* CreateNewUserViewController.swift */,
 				52AEBF2D1CE08B80001BCE1A /* SettingsViewController.swift */,
+				52AEBF2B1CE08B67001BCE1A /* CreateNewUserViewController.swift */,
 				52AEBF2F1CE08B8E001BCE1A /* LogoutViewController.swift */,
 				13389E1C1CE20F970010F903 /* TabBarViewController.swift */,
 			);
