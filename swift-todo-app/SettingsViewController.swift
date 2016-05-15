@@ -45,7 +45,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 cell.detailTextLabel!.text = tabBar.userModel.user?.fullname
             case 2:
                 cell.textLabel?.text = "År"
-                cell.detailTextLabel!.text = "\(tabBar.userModel.user!.age)"
+                let age = tabBar.userModel.user!.age
+                cell.detailTextLabel!.text = "\(age >= 0 ? "\(age)" : "")"
             default:()
         }
 
