@@ -23,6 +23,9 @@ class EditPopoverViewController: UIViewController {
     
     var otherVC: TodoTableViewController!
     
+    // TODO: Temporary fix
+    var update = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,6 +35,7 @@ class EditPopoverViewController: UIViewController {
             todoObj = otherVC.todos[selectedIndex]
             titleField.text = todoObj!.title
         } else {
+            update = true
             segmentedControl.hidden = true
             messageLabel.text = "Tilføj ny"
             addButton.setTitle("Tilføj ny", forState: .Normal)
@@ -42,7 +46,6 @@ class EditPopoverViewController: UIViewController {
             }
         }
     }
-    
     
     
     override func didReceiveMemoryWarning() {
@@ -86,7 +89,9 @@ class EditPopoverViewController: UIViewController {
                     JLToast.makeText("Todo blev gemt", duration: JLToastDelay.ShortDelay).show()
                     self.presentingViewController?.dismissViewControllerAnimated(true, completion: {})
                     self.todoObj?.addChild(todo)
-                    self.otherVC.todos.append(todo)
+                    if self.update{
+                        self.otherVC.todos.append(todo)
+                    }
                     NSNotificationCenter.defaultCenter().postNotificationName("reload", object: nil)
                 }else{
                     JLToast.makeText("Todo blev ikke gemt, prøv igen senere!", duration: JLToastDelay.ShortDelay).show()
@@ -94,16 +99,5 @@ class EditPopoverViewController: UIViewController {
             }
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -122,7 +122,6 @@ class TodoModel: NSObject {
             }
         }
         
-        
         for child in node["child"] as! [NSDictionary]{
             todo.addChild(buildTodo(child, parent: todo))
         }

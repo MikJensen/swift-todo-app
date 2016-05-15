@@ -9,139 +9,91 @@
 import UIKit
 
 class TodoTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
-    var todoSelected: Int?
-    var achieved = 0
-    // var todoObj:Todo!
     
-    //@IBOutlet var todoTable: UITableView!
+    let imgChecked = UIImage(named: "checkbox_checked_green")
+    let imgUnchecked = UIImage(named: "checkbox_unchecked")
+
+    var todoModel: TodoModel!
+    var tabBar:TabBarViewController!
     var deleteTodoIndexPath: NSIndexPath? = nil
+    var todoSelected: Int?
     
     var todos: [Todo] = [] {
-        didSet{
+        didSet{ // reloadData when recieving an update to todos array
             dispatch_async(dispatch_get_main_queue()){
                 self.tableView.reloadData()
             }
         }
     }
     
-    var todoModel: TodoModel!
-    
-    let imgChecked = UIImage(named: "checkbox_checked_green")
-    let imgUnchecked = UIImage(named: "checkbox_unchecked")
-    
-    var tabBar:TabBarViewController!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tabBar = self.tabBarController as! TabBarViewController
         todoModel = tabBar.todoModel
         
+        // if todos is empty, load all from the API
         if self.todos.count == 0{
-            tabBar.todoModel.getTodos{
-                todos in
-                self.todos = todos
-            }
+            loadFromApi()
         } else {
             self.navigationItem.title = todos[0].parent?.title
         }
         
+        // Enable refreshcontrol for tableview
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl!.addTarget(self, action: #selector(TodoTableViewController.loadFromApi(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        
+        // Listen for the "reload" notification
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.reloadTodos(_:)),name:"reload", object: nil)
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    
+    func loadFromApi(sender:AnyObject? = nil){
+        dispatch_async(dispatch_get_main_queue()){
+            self.refreshControl!.beginRefreshing()
+        }
+        tabBar.todoModel.getTodos{
+            todos in
+            self.todos = todos
+            dispatch_async(dispatch_get_main_queue()){
+                self.refreshControl!.endRefreshing()
+            }
+        }
+    }
+    
+    // When 'reload' Notification comes
     func reloadTodos(notification: NSNotification){
-        print("Doing this!")
         dispatch_async(dispatch_get_main_queue()){
             self.tableView.reloadData()
         }
     }
+    
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
         return false
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "actionSelectedSegue"{
-            let dest = segue.destinationViewController as! TodoTableViewController
-            dest.todos = todos[self.todoSelected!].children
-        }
-        if segue.identifier == "seguePopover"{
-            let editTodo = segue.destinationViewController as? EditPopoverViewController
-            editTodo?.otherVC = self
-            //if todoObj != nil{
-            //    editTodo?.todoObj = todoObj
-            //}
-            
-            // let vc = segue.destinationViewController
-            // editTodo?.todoModel = (self.tabBarController as! TabBarViewController).todoModel
-            
-            
-            // ---
-            let controller = editTodo!.popoverPresentationController
-            
-            if controller != nil{
-                controller?.delegate = self
-            }
+        switch segue.identifier! {
+            case "actionSelectedSegue":
+                let dest = segue.destinationViewController as! TodoTableViewController
+                dest.todos = todos[self.todoSelected!].children
+                break
+            case "seguePopover":
+                let editTodo = segue.destinationViewController as? EditPopoverViewController
+                editTodo?.otherVC = self
+                if let controller = editTodo?.popoverPresentationController{
+                    controller.delegate = self
+                }
+                break
+            default: ()
         }
     }
+    
+    // TableView Stuff:
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
-
-    /*
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }*/
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.todos.count
     }
     
-    // MARK: - Alert
-    
-    func confirmDelete(todo: String){
-        let alert = UIAlertController(title: "Slet \"\(todo)\" todo", message: "Er du sikker på at du vil slette todo \"\(todo)\" permanent?\nDen Vil også slette todos under den her todo!", preferredStyle: .ActionSheet)
-        
-        let DeleteAction = UIAlertAction(title: "Slet", style: .Destructive, handler: handleDeleteTodo)
-        let CancelAction = UIAlertAction(title: "Annuller", style: .Cancel, handler: cancelDeleteTodo)
-        
-        alert.addAction(DeleteAction)
-        alert.addAction(CancelAction)
-        
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    func handleDeleteTodo(alertAction: UIAlertAction!) -> Void{
-        if let indexPath = todoSelected
-        {
-            // tableView.beginUpdates()
-            tabBar.todoModel.removeTodo(todos[indexPath]){
-                succes in
-                if succes{
-                    print(indexPath)
-                    print(self.todos.count)
-                        self.todos.removeAtIndex(indexPath)
-                }else{
-                    
-                }
-                /*
-                dispatch_async(dispatch_get_main_queue()){
-                    self.tableView.endUpdates()
-                }
-                */
-            }
-        }
-    }
-    
-    func cancelDeleteTodo(alertAction: UIAlertAction!){
-        deleteTodoIndexPath = nil
-    }
     override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
         print(indexPath.row)
     }
@@ -166,6 +118,74 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
         return cell
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.todoSelected = indexPath.row
+        if todos[indexPath.row].children.count != 0{
+            performSegueWithIdentifier("actionSelectedSegue", sender: self)
+        }
+        
+    }
+    
+    // Override to support conditional editing of the table view.
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        // Return false if you do not want the specified item to be editable.
+        return true
+    }
+    
+    // Override to support editing the table view.
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]?{
+        let delete = UITableViewRowAction(style: .Destructive, title: "Slet"){
+            action, btnIndexPath in
+            self.todoSelected = indexPath.row
+            let todo = self.todos[indexPath.row].title
+            self.confirmDelete(todo)
+        }
+        let add = UITableViewRowAction(style: .Normal, title: "Rediger"){
+            action, btnIndexPath in
+            self.todoSelected = indexPath.row
+            self.performSegueWithIdentifier("seguePopover", sender: self)
+        }
+        
+        return [delete, add]
+    }
+    
+    
+    // When delete is pressed
+    func confirmDelete(todo: String){
+        let alert = UIAlertController(title: "Slet \"\(todo)\" todo", message: "Er du sikker på at du vil slette todo \"\(todo)\" permanent?\nDen Vil også slette todos under den her todo!", preferredStyle: .ActionSheet)
+        
+        let DeleteAction = UIAlertAction(title: "Slet", style: .Destructive, handler: handleDeleteTodo)
+        let CancelAction = UIAlertAction(title: "Annuller", style: .Cancel, handler: cancelDeleteTodo)
+        
+        alert.addAction(DeleteAction)
+        alert.addAction(CancelAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    // Delete accepted by user
+    func handleDeleteTodo(alertAction: UIAlertAction!) -> Void{
+        if let indexPath = todoSelected
+        {
+            tabBar.todoModel.removeTodo(todos[indexPath]){
+                succes in
+                if succes{
+                    print(indexPath)
+                    print(self.todos.count)
+                        self.todos.removeAtIndex(indexPath)
+                }else{
+                    
+                }
+            }
+        }
+    }
+    
+    // Delete rejected by user
+    func cancelDeleteTodo(alertAction: UIAlertAction!){
+        deleteTodoIndexPath = nil
+    }
+    
+    // Achive Image tapped
     func imageTapped(sender: UITapGestureRecognizer){
         let tapLocation = sender.locationInView(self.tableView)
         let indexPath = self.tableView.indexPathForRowAtPoint(tapLocation)
@@ -186,67 +206,22 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
                 JLToast.makeText("Blev ikke opdateret, prøv venligst igen!", duration: JLToastDelay.ShortDelay).show()
             }
         }
-        
     }
     
-    // TODO: Should be when the accessorytype is selected, instead of rowselect
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.todoSelected = indexPath.row
-        if todos[indexPath.row].children.count != 0{
-            performSegueWithIdentifier("actionSelectedSegue", sender: self)
-        }
-        
-    }
-    
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]?
-    {
-        let delete = UITableViewRowAction(style: .Destructive, title: "Slet"){
-            action, btnIndexPath in
-            self.todoSelected = indexPath.row
-            let todo = self.todos[indexPath.row].title
-            self.confirmDelete(todo)
-        }
-        let add = UITableViewRowAction(style: .Normal, title: "Rediger"){
-            action, btnIndexPath in
-            self.todoSelected = indexPath.row
-            // self.todoObj = self.todos[self.todoSelected!]
-            self.performSegueWithIdentifier("seguePopover", sender: self)
-        }
-        
-        return [delete, add]
-    }
+    // Plus icon pressed
     @IBAction func barButtonAction(sender: AnyObject) {
         self.todoSelected = nil
         performSegueWithIdentifier("seguePopover", sender: self)
     }
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle{
         return .None
     }
-
+    
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
 }
