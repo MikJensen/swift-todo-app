@@ -118,6 +118,7 @@ class TodoModel: NSObject {
         
         
         if let parent = parent{
+            print(parent.title)
             todo.parent = parent
             if let root = parent.root{
                 todo.root = root
@@ -128,7 +129,8 @@ class TodoModel: NSObject {
         
         
         for child in node["child"] as! [NSDictionary]{
-            todo.addChild(buildTodo(child, parent: todo))
+            //todo.addChild(buildTodo(child, parent: todo))
+            buildTodo(child, parent: todo)
         }
  
         
