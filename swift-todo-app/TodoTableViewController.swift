@@ -42,7 +42,11 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
             self.refreshControl!.addTarget(self, action: #selector(TodoTableViewController.loadFromApi(_:)), forControlEvents: UIControlEvents.ValueChanged)
         } else {
             self.navigationItem.title = todos[0].parent?.title
+            
+            // Don't know why, but this fixes it. Elsewise the back arrow won't be shown.
+            self.navigationItem.leftItemsSupplementBackButton = true
         }
+        
         
         
         // Listen for the "reload" notification
