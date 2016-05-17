@@ -29,6 +29,7 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         tabBar = self.tabBarController as! TabBarViewController
         todoModel = tabBar.todoModel
         
@@ -105,6 +106,8 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
         cell.todoLabel.text = todos[indexPath.row].title
         if todos[indexPath.row].children.count == 0{
             cell.accessoryType = .None
+        } else {
+            cell.accessoryType = .DisclosureIndicator
         }
         
         if todos[indexPath.row].archived != true{
