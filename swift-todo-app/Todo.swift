@@ -47,6 +47,12 @@ class Todo: NSObject {
         }
     }
     
+    deinit{
+        if !archived{
+            sendNotification(!archived)
+        }
+    }
+    
     func addChild(child: Todo){
         self.children.append(child)
     }
