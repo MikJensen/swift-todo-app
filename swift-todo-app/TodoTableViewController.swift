@@ -10,7 +10,7 @@ import UIKit
 
 class TodoTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
     
-    let imgChecked = UIImage(named: "checkbox_checked_green")
+    let imgChecked = UIImage(named: "checkbox_checked_blue")
     let imgUnchecked = UIImage(named: "checkbox_unchecked")
 
     var todoModel: TodoModel!
