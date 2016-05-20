@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		130C06D91CEFA3FD00D6C335 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 130C06D71CEFA3FD00D6C335 /* FBSDKCoreKit.framework */; };
+		130C06DA1CEFA3FD00D6C335 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 130C06D81CEFA3FD00D6C335 /* FBSDKLoginKit.framework */; };
 		13167FAF1CE3532C00DE1A98 /* NSDateISO8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13167FAE1CE3532C00DE1A98 /* NSDateISO8601.swift */; };
 		13167FB11CE3C80400DE1A98 /* ButtonRoundCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13167FB01CE3C80400DE1A98 /* ButtonRoundCorners.swift */; };
 		13389E1B1CE208D20010F903 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13389E1A1CE208D20010F903 /* Todo.swift */; };
@@ -54,6 +56,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		130C06D71CEFA3FD00D6C335 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		130C06D81CEFA3FD00D6C335 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		130C06DB1CEFA4EB00D6C335 /* FacebookLoginClass-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FacebookLoginClass-Bridging-Header.h"; sourceTree = "<group>"; };
 		13167FAE1CE3532C00DE1A98 /* NSDateISO8601.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateISO8601.swift; sourceTree = "<group>"; };
 		13167FB01CE3C80400DE1A98 /* ButtonRoundCorners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonRoundCorners.swift; sourceTree = "<group>"; };
 		13389E1A1CE208D20010F903 /* Todo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
@@ -95,6 +100,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				130C06DA1CEFA3FD00D6C335 /* FBSDKLoginKit.framework in Frameworks */,
+				130C06D91CEFA3FD00D6C335 /* FBSDKCoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +165,9 @@
 				52AEBF021CE083A6001BCE1A /* LaunchScreen.storyboard */,
 				52AEBF051CE083A6001BCE1A /* Info.plist */,
 				52AEBEFD1CE083A6001BCE1A /* swift_todo_app.xcdatamodeld */,
+				130C06DB1CEFA4EB00D6C335 /* FacebookLoginClass-Bridging-Header.h */,
+				130C06D71CEFA3FD00D6C335 /* FBSDKCoreKit.framework */,
+				130C06D81CEFA3FD00D6C335 /* FBSDKLoginKit.framework */,
 			);
 			path = "swift-todo-app";
 			sourceTree = "<group>";
@@ -537,6 +547,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/swift-todo-app",
+				);
 				INFOPLIST_FILE = "swift-todo-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mj.solutions.swift-todo-app";
@@ -548,6 +562,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/swift-todo-app",
+				);
 				INFOPLIST_FILE = "swift-todo-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "mj.solutions.swift-todo-app";

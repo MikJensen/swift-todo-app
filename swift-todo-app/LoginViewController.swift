@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+import FBSDKLoginKit
 
-class LoginViewController: UIViewController {
+
+class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -35,6 +38,51 @@ class LoginViewController: UIViewController {
         
         errorMessageLabel.hidden = true
         setLoading(false)
+        
+        // Facebook login
+        let fbLoginBtn: FBSDKLoginButton = {
+            permissions in
+            let button = FBSDKLoginButton()
+            button.readPermissions = permissions
+            return button
+        }(["email"])
+        
+        self.view.addSubview(fbLoginBtn)
+        fbLoginBtn.center = view.center
+        fbLoginBtn.delegate = self
+        if let _ = FBSDKAccessToken.currentAccessToken(){
+            print("Is already logged in.")
+        }
+
+    }
+    
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        print("Logged in!")
+        
+        let parameters = ["fields": "email, first_name, last_name, picture"]
+        FBSDKGraphRequest(graphPath: "me", parameters: parameters).startWithCompletionHandler{
+            connection, result, error in
+            if error != nil{
+                print(error.description)
+                return
+            }
+            
+            if let email = result["email"] as? String{
+                print(email)
+            }else{
+                print("User didn't allow email permission.")
+            }
+            
+        }
+    }
+    
+    func loginButtonWillLogin(loginButton: FBSDKLoginButton!) -> Bool {
+        print("Logging in")
+        return true
+    }
+    
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        print("Logged out!")
     }
     
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
