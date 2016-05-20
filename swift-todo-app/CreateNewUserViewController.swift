@@ -18,11 +18,16 @@ class CreateNewUserViewController: UIViewController {
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var errorMessage: UILabel!
     
+    @IBOutlet weak var registerButton: UIButton!
+    
+    
     let userModel = UserModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        registerButton.roundCorners(.AllCorners, radius: 10)
+        
         loadingIndicator.hidden = true
         errorMessage.hidden = true
     }

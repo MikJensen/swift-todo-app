@@ -15,10 +15,17 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var errorMessageLabel: UILabel!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var registerButton: UIButton!
+    
+    
     var userModel = UserModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loginButton.roundCorners(.AllCorners, radius: 10)
+        registerButton.roundCorners(.AllCorners, radius: 10)
         
         if userModel.getUser() != nil{
             dispatch_async(dispatch_get_main_queue()){

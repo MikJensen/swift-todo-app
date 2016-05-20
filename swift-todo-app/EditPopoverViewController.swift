@@ -29,6 +29,8 @@ class EditPopoverViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addButton.roundCorners(.AllCorners, radius: 10)
+        
         // If user did choose one row
         if let selectedIndex = otherVC.todoSelected{
             todoObj = otherVC.todos[selectedIndex]

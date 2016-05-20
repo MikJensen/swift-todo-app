@@ -10,9 +10,13 @@ import UIKit
 
 class LogoutViewController: UIViewController {
 
+    @IBOutlet weak var logoutButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        logoutButton.roundCorners(.AllCorners, radius: 10)
+        
         // Do any additional setup after loading the view.
     }
 
