@@ -20,8 +20,8 @@ class Todo: NSObject {
     var date: NSDate
     var children: [Todo] = []
     
-    var parent: Todo?
-    var root: Todo?
+    weak var parent: Todo?
+    weak var root: Todo?
     
     init(id: String, title: String, archived: Bool, date: NSDate){
         self.id = id

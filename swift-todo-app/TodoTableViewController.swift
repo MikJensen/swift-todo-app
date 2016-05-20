@@ -182,7 +182,7 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
                     print(self.todos.count)
                         self.todos.removeAtIndex(indexPath)
                 }else{
-                    
+                    // TODO: Show toast.
                 }
             }
         }
