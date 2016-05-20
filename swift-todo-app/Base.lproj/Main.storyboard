@@ -206,7 +206,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v4B-cR-JU0">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v4B-cR-JU0">
                                 <rect key="frame" x="60" y="128" width="200" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Log ud">
@@ -218,6 +218,11 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="v4B-cR-JU0" firstAttribute="leading" secondItem="LcE-eh-MYI" secondAttribute="leadingMargin" constant="44" id="8FD-bY-21A"/>
+                            <constraint firstItem="v4B-cR-JU0" firstAttribute="top" secondItem="i1K-Xf-x2Y" secondAttribute="bottom" constant="64" id="IiN-vw-2GW"/>
+                            <constraint firstItem="v4B-cR-JU0" firstAttribute="centerX" secondItem="LcE-eh-MYI" secondAttribute="centerX" id="pog-aE-6hp"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Log ud" id="1cL-DQ-LnH"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
