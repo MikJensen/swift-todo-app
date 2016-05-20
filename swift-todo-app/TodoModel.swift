@@ -63,9 +63,9 @@ class TodoModel: NSObject {
             if status == 200{
                 let id = json!["_id"] as! String
                 let archived = json!["archived"] as! Bool
-                // let date = NSDate(iso8601: json!["date"] as! String) // Bug in server
+                let date = NSDate(iso8601: json!["date"] as! String)
                 
-                let newTodo = Todo(id: id, title: title, archived: archived, date: date ?? NSDate(), parent: parent, root: root)
+                let newTodo = Todo(id: id, title: title, archived: archived, date: date, parent: parent, root: root)
                 ch(todo: newTodo)
             } else{
                 // Status = 400(Bad Request) and maybe other errors

@@ -21,14 +21,12 @@ public extension NSDate{
     convenience init(iso8601: String){
         // TODO: Not create 2 NSDates
         let dateFormatter = NSDateFormatter()
-        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         dateFormatter.dateFormat = "YYYY-MM-DD'T'HH:mm:ss.SSSZ"
         self.init(timeIntervalSince1970: dateFormatter.dateFromString(iso8601)!.timeIntervalSince1970)
     }
     
     func toIsoString() -> String{
         let dateFormatter = NSDateFormatter()
-        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         dateFormatter.dateFormat = "YYYY-MM-DD'T'HH:mm:ss.SSS'Z'"
         return dateFormatter.stringFromDate(self)
     }
