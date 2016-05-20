@@ -3,8 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -309,15 +307,6 @@
                                     <action selector="segmentedAction:" destination="6O7-NF-0yT" eventType="valueChanged" id="f8k-Ec-zLa"/>
                                 </connections>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fWW-KO-jII">
-                                <rect key="frame" x="60" y="48" width="200" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="VLL-yt-g7x"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Titel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rdS-Rk-Yft">
                                 <rect key="frame" x="60" y="81" width="200" height="30"/>
                                 <constraints>
@@ -348,20 +337,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="V9i-0x-ZCe" firstAttribute="top" secondItem="rdS-Rk-Yft" secondAttribute="bottom" constant="8" symbolic="YES" id="2Qn-wc-mvt"/>
-                            <constraint firstItem="Ygm-uU-8Yl" firstAttribute="baseline" secondItem="fWW-KO-jII" secondAttribute="firstBaseline" id="4ig-5r-syj"/>
-                            <constraint firstItem="Ygm-uU-8Yl" firstAttribute="centerY" secondItem="fWW-KO-jII" secondAttribute="centerY" id="ACh-IM-Xs8"/>
-                            <constraint firstItem="fWW-KO-jII" firstAttribute="trailing" secondItem="rdS-Rk-Yft" secondAttribute="trailing" id="Anr-y5-LDv"/>
-                            <constraint firstItem="fWW-KO-jII" firstAttribute="baseline" secondItem="Ygm-uU-8Yl" secondAttribute="firstBaseline" id="FTm-kM-OHA"/>
                             <constraint firstItem="rdS-Rk-Yft" firstAttribute="top" secondItem="Ygm-uU-8Yl" secondAttribute="bottom" constant="8" symbolic="YES" id="NBz-SA-M4P"/>
-                            <constraint firstItem="fWW-KO-jII" firstAttribute="leading" secondItem="lTy-QN-7jS" secondAttribute="leadingMargin" constant="44" id="PP1-ke-rKm"/>
+                            <constraint firstItem="rdS-Rk-Yft" firstAttribute="leading" secondItem="Ygm-uU-8Yl" secondAttribute="leading" id="O0N-fH-NTr"/>
                             <constraint firstItem="rdS-Rk-Yft" firstAttribute="trailing" secondItem="V9i-0x-ZCe" secondAttribute="trailing" id="PQP-JT-fRQ"/>
-                            <constraint firstItem="Ygm-uU-8Yl" firstAttribute="trailing" secondItem="fWW-KO-jII" secondAttribute="trailing" id="SDh-z8-kZg"/>
-                            <constraint firstItem="fWW-KO-jII" firstAttribute="baseline" secondItem="Ygm-uU-8Yl" secondAttribute="baseline" id="UEI-lS-Wqj"/>
-                            <constraint firstItem="fWW-KO-jII" firstAttribute="leading" secondItem="rdS-Rk-Yft" secondAttribute="leading" id="cnV-qi-O2J"/>
                             <constraint firstItem="rdS-Rk-Yft" firstAttribute="leading" secondItem="V9i-0x-ZCe" secondAttribute="leading" id="eKr-iJ-8Lr"/>
-                            <constraint firstItem="rdS-Rk-Yft" firstAttribute="top" secondItem="fWW-KO-jII" secondAttribute="bottom" constant="12" id="hqS-FF-CNm"/>
                             <constraint firstItem="Ygm-uU-8Yl" firstAttribute="centerX" secondItem="lTy-QN-7jS" secondAttribute="centerX" id="iN7-y7-L1A"/>
-                            <constraint firstItem="Ygm-uU-8Yl" firstAttribute="leading" secondItem="fWW-KO-jII" secondAttribute="leading" id="kcu-uD-Pxd"/>
                             <constraint firstItem="Ygm-uU-8Yl" firstAttribute="top" secondItem="1DT-hC-NLu" secondAttribute="bottom" constant="25" id="kmM-k0-gbg"/>
                         </constraints>
                     </view>
@@ -369,7 +349,6 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="addButton" destination="V9i-0x-ZCe" id="RM9-KY-R8y"/>
-                        <outlet property="messageLabel" destination="fWW-KO-jII" id="htb-Fh-HOv"/>
                         <outlet property="segmentedControl" destination="Ygm-uU-8Yl" id="PCS-Gs-Oiy"/>
                         <outlet property="titleField" destination="rdS-Rk-Yft" id="DuE-b7-5ry"/>
                     </connections>

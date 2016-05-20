@@ -31,13 +31,13 @@ class EditPopoverViewController: UIViewController {
         
         // If user did choose one row
         if let selectedIndex = otherVC.todoSelected{
-            messageLabel.hidden = true
             todoObj = otherVC.todos[selectedIndex]
             titleField.text = todoObj!.title
         } else {
             update = true
-            segmentedControl.hidden = true
-            messageLabel.text = "Tilføj ny"
+            segmentedControl.selectedSegmentIndex = 1
+            segmentedControl.enabled = false
+            titleField.placeholder = "Tilføj ny titel"
             addButton.setTitle("Tilføj ny", forState: .Normal)
             
             // If no row chosen, but array has parent.

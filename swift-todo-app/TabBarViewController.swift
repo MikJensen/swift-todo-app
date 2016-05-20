@@ -32,13 +32,13 @@ class TabBarViewController: UITabBarController {
         self.todoModel = TodoModel(userModel: userModel)
         
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.renameThisFunc(_:)),name:"archived", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.setBadge(_:)),name:"archived", object: nil)
         
     }
     
     
     
-    func renameThisFunc(notification: NSNotification){
+    func setBadge(notification: NSNotification){
         if let archived = notification.object as? Bool{
             count = count + (archived ? -1 : 1)
             let tabArray = self.tabBar.items as NSArray!
