@@ -57,7 +57,7 @@ class UserModel: NSObject {
         }
     }
     
-    private func loadUserInfo(token: String, ch: (success: Bool, text: String) -> Void){
+    func loadUserInfo(token: String, ch: (success: Bool, text: String) -> Void){
         let api = "/api/user"
         let method = "GET"
         self.api.request(api: api, method: method, data: "", token: token){
