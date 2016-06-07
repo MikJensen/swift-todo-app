@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
 class LogoutViewController: UIViewController {
 
+    @IBOutlet weak var logoutButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        logoutButton.roundCorners(.AllCorners, radius: 10)
+        
         // Do any additional setup after loading the view.
     }
 
@@ -40,9 +45,11 @@ class LogoutViewController: UIViewController {
     func handleLogout(alertAction: UIAlertAction!) -> Void{
         KeychainWrapper.removeObjectForKey("user")
         
-        self.tabBarController?.dismissViewControllerAnimated(true, completion: {})
+        // Todo: Only facebook logout if user used facebook.
+        FBSDKLoginManager().logOut()
         
-        //performSegueWithIdentifier("segueLogin", sender: self)
+        
+        self.tabBarController?.dismissViewControllerAnimated(true, completion: {})
     }
     
     func cancelLogout(alertAction: UIAlertAction!){

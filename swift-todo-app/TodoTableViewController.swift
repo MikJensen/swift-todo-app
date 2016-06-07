@@ -100,10 +100,6 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
         return self.todos.count
     }
     
-    override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
-        print(indexPath.row)
-    }
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TableViewCell
         
@@ -178,11 +174,9 @@ class TodoTableViewController: UITableViewController, UIPopoverPresentationContr
             tabBar.todoModel.removeTodo(todos[indexPath]){
                 succes in
                 if succes{
-                    print(indexPath)
-                    print(self.todos.count)
-                        self.todos.removeAtIndex(indexPath)
+                    self.todos.removeAtIndex(indexPath)
                 }else{
-                    
+                    // TODO: Show toast.
                 }
             }
         }

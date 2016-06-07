@@ -19,9 +19,8 @@ import Foundation
 public extension NSDate{
     
     convenience init(iso8601: String){
-        // TODO: Not create 2 NSDates
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "YYYY-MM-DD'T'HH:mm:ss.SSSZ"
+        dateFormatter.dateFormat = "YYYY-MM-DD'T'HH:mm:ss.SSS'Z'"
         self.init(timeIntervalSince1970: dateFormatter.dateFromString(iso8601)!.timeIntervalSince1970)
     }
     
